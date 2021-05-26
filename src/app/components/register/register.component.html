@@ -1,0 +1,70 @@
+<!-- Material form register -->
+
+
+<mdb-card class="m-5" style="color: #757575; max-width: 500px;">
+  <mdb-card-body>
+      <h1 class="text-center primary">Create An Account</h1>
+      <form>
+          <!-- First name -->
+        <div class="md-form">
+          <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+            <input type="text" id="materialRegisterFormFirstName" class="form-control" mdbInput>
+            <label for="materialRegisterFormFirstName">First name</label>
+          </div>
+
+            <!-- Last name -->
+          <div class="md-form">
+            <mdb-icon fas icon="user" class="prefix"></mdb-icon>
+            <input type="text" id="materialRegisterFormLastName" class="form-control" mdbInput>
+            <label for="materialRegisterFormLastName">Last name</label>
+          </div>
+
+            <!-- Phone number -->
+          <div class="md-form">
+              <mdb-icon fas icon="phone-alt" class="prefix phone"></mdb-icon>
+              <input type="text" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
+                mdbInput>
+              <label for="materialRegisterFormPhone">Phone number</label>
+              <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-center text-muted mb-4">
+               Phone number is incorrect
+              </small>
+            </div>
+
+          <div class="md-form">
+              <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+              <input mdbInput type="text" id="form2" class="form-control">
+              <label for="form2">Email Address</label>
+          </div>
+
+           <!-- Password -->
+           <div class="md-form">
+            <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+            <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
+              mdbInput>
+            <label for="materialRegisterFormPassword">Password</label>
+            <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-center text-muted mb-4">
+              At least 8 characters and 1 digit
+            </small>
+          </div>
+  
+           <!-- Password -->
+           <div class="md-form">
+            <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+              <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
+                mdbInput>
+              <label for="materialRegisterFormPassword">Confirm Password</label>
+              <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-center text-muted mb-4">
+                Passwords don't match
+              </small>
+            </div>
+
+
+          <p class="text-center">Have an account already?
+              <a href="">Login</a>
+          </p>
+
+          <button mdbBtn color="info" block="true" class="my-4" type="submit">Login </button>
+       </form>
+  </mdb-card-body>
+
+</mdb-card>
