@@ -1,34 +1,36 @@
+<!--Claim,  call appointment, claim hisotyr-->
 <!--Navbar-->
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark cyan" [containerInside]="false">
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo" [containerInside]="false">
 
-    <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="#">RAF</a></mdb-navbar-brand>
-  
-    <!-- Collapsible content -->
-    <links>
-  
-      <!-- Links -->
-      <ul class="navbar-nav ml-auto">
-        <!-- Dropdown -->
-        <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon>Username<span class="caret"></span></a>
-          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
-          </div>
-        </li>
-      </ul>
-      <!-- Links -->
-    </links>
-    <!-- Collapsible content -->
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="#">RAF</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="user"></mdb-icon>Username<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Dashboard</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
   
   </mdb-navbar>
   <!--/.Navbar-->
   <div class="mt-3 mb-5">
     <div class="d-flex justify-content-between align-items-centerp px-2">
         <h1 style="color: #585858;">User Profile</h1>
-        <button mdbBtn color="bg-primary" type="submit">Edit</button>
+        <button mdbBtn color="bg-primary" (click)="edit()" type="submit">Edit</button>
     </div>
   </div>
 
@@ -36,8 +38,8 @@
   <h3 style="color: #757575;" class="m-1 px-3">Personal Details</h3>
   <mdb-card class="m-1" style="color: #757575; max-width: 99%;">
     <mdb-card-body>
-       <p>First name:<b> Username 1</b></p>
-       <p>Last name:<b> UserSurname 1</b></p>
+       <p>First name: <b>{{user?.firstname}}</b></p>
+       <p>Last name: <b>{{user?.lastname}}</b></p>
     </mdb-card-body>
   </mdb-card>
 
@@ -46,9 +48,9 @@
   <h3 style="color: #757575;" class="m-1 px-3">Contact Details</h3>
   <mdb-card class="m-1" style="color: #757575; max-width: 99%;">
     <mdb-card-body>
-       <p>Phone number:<b> 000 000 0000</b></p>
-       <p>First name:<b> UserSurname 1</b></p>
+       <p>Phone number: <b>{{user?.phoneNumber}}</b></p>
+       <p>Email adddress:<b>{{user?.emailAddress}}</b></p>
     </mdb-card-body>
   </mdb-card>
 
-  <button mdbBtn class="my-5" color="bg-primary" type="submit">Delete Account</button>
+  <button mdbBtn class="my-5" color="bg-primary" (click)="deleteAccount()" type="submit">Delete Account</button>

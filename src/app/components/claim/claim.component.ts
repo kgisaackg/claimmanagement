@@ -12,4 +12,6 @@ export class ClaimComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //dd-mmmm-yyyy
+  today: number = Date.now();
 }

@@ -1,16 +1,20 @@
-<!-- Material form register -->
-
-
 <mdb-card class="m-5" style="color: #757575; max-width: 500px;">
   <mdb-card-body>
-      <h1 class="text-center primary">Create An Account</h1>
-      <form>
+      <h3 class="text-center primary">Create an account</h3>
+      <form [formGroup]="userForm">
           <!-- First name -->
-        <div class="md-form">
+        <div class="md-form mb-0">
           <mdb-icon fas icon="user" class="prefix"></mdb-icon>
-            <input type="text" id="materialRegisterFormFirstName" class="form-control" mdbInput>
+            <input type="text"  formControlName="firstname" class="form-control" mdbInput>
             <label for="materialRegisterFormFirstName">First name</label>
           </div>
+          <!--Validation-->
+          <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" class="text-danger form-text text-center text-muted pt-0">
+            <small  *ngIf="firstname?.errors?.required"> *Name is required</small>
+            <small  *ngIf="firstname?.errors?.pattern"> *Name  must be letters only</small>
+            <small  *ngIf="firstname?.errors?.minlength"> *Name must have more than 3 letters</small>
+          </div>
+ 
 
             <!-- Last name -->
           <div class="md-form">
@@ -18,33 +22,47 @@
             <input type="text" id="materialRegisterFormLastName" class="form-control" mdbInput>
             <label for="materialRegisterFormLastName">Last name</label>
           </div>
+          <!--Validation-->
+          <div *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)" class="text-danger">
+            <small  *ngIf="lastname?.errors?.required"> *Name is required</small>
+            <small  *ngIf="lastname?.errors?.pattern"> Name must be letters only</small>
+            <small  *ngIf="lastname?.errors?.minlength"> *Name must have more than 3 letter</small>
+          </div>
 
-            <!-- Phone number -->
+          <!-- Phone number -->
           <div class="md-form">
               <mdb-icon fas icon="phone-alt" class="prefix phone"></mdb-icon>
               <input type="text" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
                 mdbInput>
               <label for="materialRegisterFormPhone">Phone number</label>
-              <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-center text-muted mb-4">
-               Phone number is incorrect
-              </small>
-            </div>
+          </div>
+          <!--Validation-->
+          <div *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" class="text-danger">
+            <small *ngIf="phoneNumber?.errors?.required"> * Phone number is incorrect</small>
+          </div>
 
           <div class="md-form">
               <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
               <input mdbInput type="text" id="form2" class="form-control">
-              <label for="form2">Email Address</label>
+              <label for="form2">Email address</label>
           </div>
-
+          <!--Validation-->
+          <div *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)" class="text-danger">
+            <small  *ngIf="emailAddress?.errors?.required"> *Email address is required</small>
+            <small  *ngIf="emailAddress?.errors?.email"> *Invalid email address</small>
+          </div>
+          
            <!-- Password -->
            <div class="md-form">
             <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
             <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
               mdbInput>
             <label for="materialRegisterFormPassword">Password</label>
-            <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-center text-muted mb-4">
-              At least 8 characters and 1 digit
-            </small>
+          </div>
+          <!--validation-->
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+            <small  *ngIf="password?.errors?.required"> *password is required</small>
+            <small  *ngIf="password?.errors?.pattern"> * At least 8 characters and 1 digit</small>
           </div>
   
            <!-- Password -->
@@ -52,19 +70,19 @@
             <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
               <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock"
                 mdbInput>
-              <label for="materialRegisterFormPassword">Confirm Password</label>
-              <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-center text-muted mb-4">
-                Passwords don't match
-              </small>
+              <label for="materialRegisterFormPassword">Confirm password</label>
+            </div>
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+              <small  *ngIf="password?.errors?.required"> *Confirm password is required</small>
+              <small *ngIf="userForm.errors?.misMatch" class="text-danger">*Passwords don't not match</small>
             </div>
 
 
           <p class="text-center">Have an account already?
-              <a href="">Login</a>
+              <a routerLink="/login">Login</a>
           </p>
 
-          <button mdbBtn color="info" block="true" class="my-4" type="submit">Login </button>
+          <button mdbBtn type="submit" [disabled]='!userForm.valid' color="indigo" block="true" class="my-4" >Sign up</button>
        </form>
   </mdb-card-body>
-
 </mdb-card>

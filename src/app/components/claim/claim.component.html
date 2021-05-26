@@ -1,7 +1,7 @@
 <!-- Material form register -->
-<mdb-card class="m-5" style="color: #757575; max-width: 500px;">
+<mdb-card style="color: #757575; max-width: 500px;">
     <mdb-card-body>
-        <h3 class="text-center primary">Write us a claim</h3>
+        <h3 >Write us a claim</h3>
         <form>
             <!-- First name -->
             <div class="form-row">
@@ -33,6 +33,10 @@
                 <input mdbInput type="text" id="form2" class="form-control">
                 <label for="form2">Email Address</label>
             </div>
+            <div class="md-form">
+              <input mdbInput disabled placeholder="{{today | date: 'dd-MMMM-YYYY'}}"type="text" id="form2" class="form-control">
+              <label for="form2">Date</label>
+          </div>
   
             <div class="md-form">
                 <textarea
@@ -44,7 +48,7 @@ class="form-control md-textarea"
             </div>
 
 
-            <button mdbBtn color="info" block="true" class="my-4" type="submit">Send Claim</button>
+            <button mdbBtn color="indigo" block="true" class="my-4" type="submit">Send Claim</button>
          </form>
     </mdb-card-body>
   

@@ -1,1 +1,68 @@
 <!--Claim,  call appointment, claim hisotyr-->
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark indigo" [containerInside]="false">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" href="#">RAF</a></mdb-navbar-brand>
+  
+    <!-- Collapsible content -->
+    <links>
+  
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon>Username<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Dashboard</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          </div>
+        </li>
+      </ul>
+      <!-- Links -->
+    </links>
+    <!-- Collapsible content -->
+    
+  </mdb-navbar>
+  
+  <div>
+    <button mdbBtn color="indigo" type="submit" (click)="showAddClaim()">Add a claim</button>
+    
+    <div class="p-2">
+      <!--Getting claim on buttom add-->
+      <div *ngIf="showClaim">
+        <app-claim></app-claim>
+      </div>
+      
+      <!--Table-->
+      <table mdbTable>
+        <thead>
+          <tr>
+            <th class="">Claim number</th>
+            <th class="">Date</th>
+            <th class="">Level</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td>1r32rqqrwe5qrqrqrewr44</td>
+              <td>02 September 2010</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>fqriqirewjiqriqjriqwjr</td>
+              <td>13 June 2011</td>
+              <td>2</td>
+            </tr>
+        </tbody>
+      </table>
+      <!-- /** Table-->
+    </div>
+  </div>
+
+  <!--send a claim
+  //message them 
+  //get you a token for a call
+  //see claim progress(claim tracking)-->

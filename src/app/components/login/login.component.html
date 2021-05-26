@@ -1,24 +1,25 @@
 <mdb-card class="m-5" style="color: #757575; max-width: 340px;">
     <mdb-card-body>
-        <h1 class="text-center primary">RAF login</h1>
-        <form>
+        <h3 class="text-center">Login</h3>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="md-form">
                 <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
-                <input mdbInput type="text" id="form2" class="form-control">
+                <input mdbInput type="text" id="form2" class="form-control" 
+                    formControlName="emailAddress">
                 <label for="form2">Email Address</label>
             </div>
 
             <div class="md-form">
                 <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
-                <input mdbInput type="text" id="form2" class="form-control">
+                <input mdbInput type="text" id="form2" class="form-control" formControlName="password">
                 <label for="form2">Password</label>
             </div>
 
             <p class="text-center">Are you new to RAF?
-                <a href="">Register</a>
+                <a routerLink="/register">Register</a>
             </p>
 
-            <button mdbBtn color="bg-primary" block="true" class="my-4" type="submit">Sign in</button>
+            <button mdbBtn color="indigo" block="true" class="my-4" type="submit">Sign in</button>
          </form>
     </mdb-card-body>
 

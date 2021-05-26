@@ -1,1 +1,48 @@
-<p>edit-profile works!</p>
+<mdb-card class="m-5" style="color: #757575; max-width: 500px;">
+    <mdb-card-body>
+        <h3 class="primary">Edit Profile</h3>
+        <form [formGroup]="updateForm">
+            <!-- First name -->
+          <div class="md-form">
+              <input type="text" placeholder="{{user.firstname}}" class="form-control" mdbInput>
+              <label for="materialRegisterFormFirstName">First name</label>
+            </div>
+            <!--Validation-->
+            <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" class="text-danger form-text text-center text-muted">
+              <small  *ngIf="firstname?.errors?.required"> *Name is required</small>
+              <small  *ngIf="firstname?.errors?.pattern"> *Name  must be letters only</small>
+              <small  *ngIf="firstname?.errors?.minlength"> *Name must have more than 3 letters</small>
+            </div>
+  
+            <!-- Last name -->
+            <div class="md-form">
+              <input type="text" placeholder="{{user.lastname}}" class="form-control" mdbInput>
+              <label for="materialRegisterFormLastName">Last name</label>
+            </div>
+            <!--Validation-->
+            <div *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)" class="text-danger">
+              <small  *ngIf="lastname?.errors?.required"> *Name is required</small>
+              <small  *ngIf="lastname?.errors?.pattern"> Name must be letters only</small>
+              <small  *ngIf="lastname?.errors?.minlength"> *Name must have more than 3 letter</small>
+            </div>
+  
+            <!-- Phone number -->
+            <div class="md-form">
+                <input type="text" placeholder="{{user.phoneNumber}}" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
+                  mdbInput>
+                <label for="materialRegisterFormPhone">Phone number</label>
+            </div>
+            <!--Validation-->
+            <div *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" class="text-danger">
+                <small *ngIf="phoneNumber?.errors?.required"> * Phone number is incorrect</small>
+            </div>
+
+            <!--Email Address-->
+            <div class="md-form">
+                <input mdbInput type="text" placeholder="{{user.emailAddress}}" id="form2" class="form-control">
+                <label for="form2">Email address</label>
+            </div>
+            <button mdbBtn type="submit" [disabled]='!updateForm.valid' color="info"  class="my-4" >Save Changes</button>
+         </form>
+    </mdb-card-body>
+</mdb-card>

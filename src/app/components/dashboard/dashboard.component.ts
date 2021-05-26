@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  showClaim = false;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showAddClaim(){
+    this.showClaim = !this.showClaim;
   }
 
 }
