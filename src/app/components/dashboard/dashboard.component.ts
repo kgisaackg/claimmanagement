@@ -17,4 +17,7 @@ export class DashboardComponent implements OnInit {
     this.showClaim = !this.showClaim;
   }
 
+  logOut(){
+    console.log("Have logged out");
+  }
 }

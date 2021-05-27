@@ -16,6 +16,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 import { ClaimComponent } from './components/claim/claim.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     DashboardComponent,
     EditProfileComponent,
     ClaimComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
