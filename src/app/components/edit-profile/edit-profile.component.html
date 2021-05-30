@@ -2,14 +2,16 @@
 <mdb-card class="mx-auto mt-5" style="color: #757575; max-width: 500px;">
     <mdb-card-body>
         <h3 class="primary">Edit Profile</h3>
-        <form [formGroup]="updateForm">
+        <form [formGroup]="updateForm"
+         (ngSubmit)="onUpdate(user?.firstname, user?.lastname, user?.phoneNumber, user?.emailAddress)">
             <!-- First name -->
           <div class="md-form">
-              <input type="text" placeholder="{{user.firstname}}" class="form-control" mdbInput>
+              <input type="text" placeholder="{{user?.firstname}}" class="form-control" formControlName="firstname" mdbInput>
               <label for="materialRegisterFormFirstName">First name</label>
             </div>
             <!--Validation-->
-            <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" class="text-danger form-text text-center text-muted">
+            <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" 
+                  class="text-danger form-text text-center text-muted">
               <small  *ngIf="firstname?.errors?.required"> *Name is required</small>
               <small  *ngIf="firstname?.errors?.pattern"> *Name  must be letters only</small>
               <small  *ngIf="firstname?.errors?.minlength"> *Name must have more than 3 letters</small>
@@ -17,7 +19,8 @@
   
             <!-- Last name -->
             <div class="md-form">
-              <input type="text" placeholder="{{user.lastname}}" class="form-control" mdbInput>
+              <input type="text" placeholder="{{user?.lastname}}" class="form-control" 
+              formControlName="lastname"  mdbInput>
               <label for="materialRegisterFormLastName">Last name</label>
             </div>
             <!--Validation-->
@@ -29,8 +32,8 @@
   
             <!-- Phone number -->
             <div class="md-form">
-                <input type="text" placeholder="{{user.phoneNumber}}" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock"
-                  mdbInput>
+                <input type="text" placeholder="{{user?.phoneNumber}}" class="form-control" 
+                        aria-describedby="materialRegisterFormPhoneHelpBlock" formControlName="phoneNumber" mdbInput>
                 <label for="materialRegisterFormPhone">Phone number</label>
             </div>
             <!--Validation-->
@@ -40,7 +43,8 @@
 
             <!--Email Address-->
             <div class="md-form">
-                <input mdbInput type="text" disabled placeholder="{{user.emailAddress}}" id="form2" class="form-control">
+                <input mdbInput type="text" disabled placeholder="{{user?.email}}" 
+                formControlName="emailAddress" id="form2" class="form-control">
                 <label for="form2">Email address</label>
             </div>
             <button mdbBtn type="submit" [disabled]='!updateForm.valid' color="info"  class="my-4" >Save Changes</button>

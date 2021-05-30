@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ClaimService } from 'src/app/services/claim.service';
+import { Claim } from "../../types/claim"
 
 @Component({
   selector: 'app-dashboard',
@@ -7,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  claims: any[];
   showClaim = false;
-  constructor() { }
+  constructor( private claimService: ClaimService) { }
 
   ngOnInit(): void {
+   this.getClaims();
   }
 
   showAddClaim(){
@@ -18,6 +22,20 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut(){
+    
     console.log("Have logged out");
   }
+
+getClaims(){
+  this.claimService.getClaims().subscribe(res =>{
+    this.claims = res.map ( (document)=>{
+      return {
+        idnew: document.payload.doc.id,
+        ...document.payload.doc.data() as Claim
+    }
+  });
+  console.log ("Data received >> ",this.claims);
+})
+}
+
 }

@@ -7,15 +7,16 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ActiveClaimantGuard } from './guards/active-claimant.guard';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
-  {path: "profile", component: ProfileComponent},
-  {path: "editprofile", component: EditProfileComponent},
-  {path: "claim", component: ClaimComponent},
-  {path: "dashboard", component: DashboardComponent},
+  {path: "profile", component: ProfileComponent, canActivate: [ActiveClaimantGuard]},
+  {path: "editprofile", component: EditProfileComponent, canActivate: [ActiveClaimantGuard]},
+  {path: "claim", component: ClaimComponent, canActivate: [ActiveClaimantGuard]},
+  {path: "dashboard", component: DashboardComponent, canActivate: [ActiveClaimantGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

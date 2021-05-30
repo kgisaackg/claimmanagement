@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from '../../validation/passwordMatchValidator';
 
 @Component({
@@ -18,12 +19,12 @@ export class RegisterComponent implements OnInit {
     firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
     lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
     emailAddress: ['', [Validators.required, Validators.email]],
-    phoneNumber: ['', [Validators.required, Validators.minLength(3), Validators.pattern('(?=.*[0-9]).{10}')]],//not sure of this 
+    phoneNumber: ['', [Validators.required]],//not sure of this 
     password: ['', [Validators.required,Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&].{7,}')]],
     confirmPassword: ['',  Validators.required]
   },{validator: passwordMatchValidator}) 
 
-  constructor(private fb: FormBuilder, private router: Router) { }
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -41,7 +42,9 @@ export class RegisterComponent implements OnInit {
   get confirmPassword() { return this.userForm.get('confirmPassword')}
 
   onSubmit(){
-    console.log(this.userForm.value); 
-    this.router.navigate(['/shop']);
+    console.log("Submited")
+    this.authService.emailSignup(this.userForm.value.firstname, this.userForm.value.lastname,
+      this.userForm.value.phoneNumber, this.userForm.value.emailAddress, this.userForm.value.password)
+    console.log("submited")
   }
 }

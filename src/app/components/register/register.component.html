@@ -3,7 +3,7 @@
 <h3 class="p2-3 text-center">Create an account</h3>
 <mdb-card class="mx-auto" style="color: #757575; max-width: 500px;">
   <mdb-card-body>
-      <form [formGroup]="userForm">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
           <!-- First name -->
         <div class="md-form mb-0">
           <mdb-icon fas icon="user" class="prefix"></mdb-icon>
@@ -69,13 +69,13 @@
            <!-- Password -->
            <div class="md-form mb-0">
             <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
-              <input type="password" class="form-control" formControlName="passwordConfirm" mdbInput>
+              <input type="password" class="form-control" formControlName="confirmPassword" mdbInput>
               <label>Confirm password</label>
             </div>
             <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" class="text-danger">
               <small *ngIf="confirmPassword?.errors?.required"> *Confirm password is required</small>
-              <small *ngIf="userForm.errors?.misMatch" class="text-danger">*Passwords don't not match</small>
             </div>
+            <small *ngIf="userForm.errors?.misMatch" class="text-danger">*Passwords don't not match</small>
 
 
           <p class="text-center mt-5">Have an account already?

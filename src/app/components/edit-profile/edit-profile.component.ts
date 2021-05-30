@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { ClaimerService } from 'src/app/services/claimer.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,12 +12,12 @@ export class EditProfileComponent implements OnInit {
 
   user: any;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private claimerService:
+    ClaimerService, private authS: AuthService) { }
 
   ngOnInit(): void {
-    this.user = {
-      firstname: "Isaac", lastname: "Malebana", phoneNumber: "063 4242 1342", emailAddress: "user@gmail.com"
-    }
+    this.claimerService.getClaimant(this.authS.currentUserId())
+    .subscribe(doc => this.user = doc.data());
   }
 
   updateForm = this.fb.group({
@@ -32,5 +34,38 @@ export class EditProfileComponent implements OnInit {
   get phoneNumber() { return this.updateForm.get('phoneNumber')}
 
   get emailAddress() { return this.updateForm.get('emailAddress')}
+
+  onUpdate(fname: string, lname: string, phone: string, emailAddress: string){
+
+    if(this.updateForm.value.firstname == ""){
+      this.updateForm.value.firstname = fname;
+    }
+
+    if(this.updateForm.value.phoneNumber == ""){
+      this.updateForm.value.phoneNumber = phone;
+    }
+
+    if(this.updateForm.value.lastname == ""){
+      this.updateForm.value.lastname = lname;
+    }
+
+    if(this.updateForm.value.emailAddress == ""){
+      this.updateForm.value.emailAddress = emailAddress;
+    }
+
+
+
+    const user = {
+      id: this.authS.currentUserId(),
+      firstname: this.updateForm.value.firstname, 
+      lastname: this.updateForm.value.lastname,
+      phoneNumber: this.updateForm.value.phoneNumber, 
+      email: "isaac@gmail.com"
+    }
+
+    console.log(user);
+
+    this.claimerService.updateClaimant(user);
+  }
 
 }

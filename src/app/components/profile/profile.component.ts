@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
+import { ClaimerService } from 'src/app/services/claimer.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +12,13 @@ export class ProfileComponent implements OnInit {
 
   user: any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private claimerService:
+     ClaimerService, private authS: AuthService) { }
 
   ngOnInit(): void {
-    this.user = {
-      firstname: "Isaac", lastname: "Malebana", phoneNumber: "063 4242 1342", emailAddress: "user@gmail.com"
-    }
+    console.log(this.authS.currentUserId);
+    this.claimerService.getClaimant(this.authS.currentUserId())
+    .subscribe(doc => this.user = doc.data());
   }
 
   edit(){
@@ -23,11 +26,14 @@ export class ProfileComponent implements OnInit {
   }
 
   logOut(){
-    console.log("---For logout ----")
+    this.authS.logout();
   }
 
   deleteAccount(){
-
+    this.claimerService.deleteClaimant(this.authS.currentUserId());
+    this.authS.deleteUser();
+    localStorage.clear();
+    this.router.navigate(['/login'])
   }
 
 }

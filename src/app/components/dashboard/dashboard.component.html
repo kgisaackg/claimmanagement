@@ -9,6 +9,8 @@
       </div>
       
       <!--Table-->
+      <div>
+      </div>
       <table mdbTable *ngIf="!showClaim">
         <thead>
           <tr>
@@ -17,13 +19,9 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-              <td>1r32rqqrwe5qrqrqrewr44</td>
-              <td>02-September-2010</td>
-            </tr>
-            <tr>
-              <td>fqriqirewjiqriqjriqwjr</td>
-              <td>13-June-2011</td>
+            <tr *ngFor="let claim of claims">
+              <td>{{claim.id}}</td>
+              <td>{{claim.claimDate}}</td>
             </tr>
         </tbody>
       </table>
