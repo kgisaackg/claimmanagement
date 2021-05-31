@@ -1,6 +1,7 @@
 export class Claim{
-    id: string;
+    id: string
+    claimantId: string;
     claimDate: string;
+    title: string;
     message: string;
-    claimerId: string;
 }

@@ -11,12 +11,17 @@
       <!-- Links -->
       <ul class="navbar-nav ml-auto">
         <!-- Dropdown -->
+        
+        <li class="nav-item waves-light" mdbWavesEffect>
+          <a class="nav-link" routerLink=""></a>
+        </li>
+        
         <li class="nav-item dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             <mdb-icon fas icon="user"></mdb-icon>{{user?.firstname}}<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
             <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/profile">My account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/dashboard">Dashboard</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/dashboard">Claims</a>
             <a class="dropdown-item waves-light" mdbWavesEffect (click)="logOut()">Log out</a>
           </div>
         </li>

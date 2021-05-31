@@ -1,8 +1,8 @@
 <app-header></app-header>
   <div class="container mt-5">
-    <button mdbBtn color="info" type="submit" (click)="showAddClaim()">Add a claim</button>
+    <button mdbBtn color="info" type="submit" (click)="showAddClaim()" size="sm">Add a claim</button>
     
-    <div>
+    <div class="mt-4">
       <!--Getting claim on buttom add-->
       <div *ngIf="showClaim">
         <app-claim></app-claim>
@@ -11,20 +11,56 @@
       <!--Table-->
       <div>
       </div>
-      <table mdbTable *ngIf="!showClaim">
+      <div class=" table-responsive">
+        <table mdbTable *ngIf="!showClaim"> 
         <thead>
           <tr>
-            <th class="">Claim number</th>
-            <th class="">Date</th>
+            <th class="py-2 px-1">Title</th>
+            <th class="py-2 px-1">Date</th>
+            <th class="py-2 px-1">Message</th>
           </tr>
         </thead>
         <tbody>
             <tr *ngFor="let claim of claims">
-              <td>{{claim.id}}</td>
-              <td>{{claim.claimDate}}</td>
+              <td class="py-2 px-1">{{claim.title}}</td>
+              <td class="py-2 px-1">{{claim.claimDate}}</td>
+              <td class="py-2 px-1">{{claim.message}}</td>
+              <td class="py-2 px-1"><mdb-icon fas class="btn-click green-text" icon="edit" (click)="editClaim(claim.claimId)"></mdb-icon></td>
+              <td class="py-2 px-1"><mdb-icon fas class="btn-click red-text" icon="trash" (click)="frame.show()"></mdb-icon></td>
+              <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Are you sure?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a  mdbBtn color="danger" outline="true" class="waves-effect"
+          mdbWavesEffect  (click)="deleteClaim(claim.claimId)">Yes</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect"
+         mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
             </tr>
         </tbody>
       </table>
       <!-- /** Table-->
+      </div>
+      
     </div>
   </div>
+
+  <!--Popup when clicking delete-->
+

@@ -1,31 +1,33 @@
 <app-header></app-header>
 <div class="container mt-5">
 
-  <div class="mb-5">
-    <div class="d-flex justify-content-between align-items-centerp px-2">
-        <h1 style="color: #585858;">User Profile</h1>
-        <button mdbBtn color="info" (click)="edit()" type="submit">Edit</button>
+  <div class="mb-3">
+    <div class="d-flex justify-content-between align-items-center px-2">
+        <h3 style="color: #585858;">User Profile</h3>
+        <div>
+          <button mdbBtn color="info" (click)="edit()" type="submit" size="sm">Edit</button>
+        </div>
     </div>
   </div>
 
   <!--Personal Detials-->
-  <h3 style="color: #757575;" class="m-1 px-3">Personal Details</h3>
+  <h5 style="color: #757575;" class="m-2">Personal Details</h5>
   <mdb-card class="m-1" style="color: #757575; max-width: 99%;">
     <mdb-card-body>
-       <p>First name: <b>{{user?.firstname}}</b></p>
-       <p>Last name: <b>{{user?.lastname}}</b></p>
+       <p><b>First name:</b> {{user?.firstname}}</p>
+       <p><b>Last name:</b> {{user?.lastname}}</p>
     </mdb-card-body>
   </mdb-card>
 
   <!--Contact Details-->
   <p></p>
-  <h3 style="color: #757575;" class="m-1 px-3">Contact Details</h3>
+  <h5 style="color: #757575;" class="m-2">Contact Details</h5>
   <mdb-card class="m-1" style="color: #757575; max-width: 99%;">
     <mdb-card-body>
-       <p>Phone number: <b>{{user?.phoneNumber}}</b></p>
-       <p>Email adddress:<b>{{user?.email}}</b></p>
+       <p><b>Phone number:</b> {{user?.phoneNumber}}</p>
+       <p><b>Email adddress:</b>{{user?.email}}</p>
     </mdb-card-body>
   </mdb-card>
 
-  <button mdbBtn class="my-5" color="danger" (click)="deleteAccount()" type="submit">Delete</button>
+  <button mdbBtn class="mt-3 mb-5" color="danger" (click)="deleteAccount()" type="submit" size="sm">Delete</button>
 </div>

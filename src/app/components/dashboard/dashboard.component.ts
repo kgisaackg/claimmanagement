@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor( private claimService: ClaimService) { }
 
   ngOnInit(): void {
-   this.getClaims();
+    this.getClaims();
   }
 
   showAddClaim(){
@@ -22,20 +22,27 @@ export class DashboardComponent implements OnInit {
   }
 
   logOut(){
-    
     console.log("Have logged out");
   }
 
-getClaims(){
-  this.claimService.getClaims().subscribe(res =>{
-    this.claims = res.map ( (document)=>{
-      return {
-        idnew: document.payload.doc.id,
-        ...document.payload.doc.data() as Claim
-    }
-  });
-  console.log ("Data received >> ",this.claims);
-})
-}
+  getClaims(){
+    this.claimService.getClaims().subscribe(res =>{
+      this.claims = res.map ( (document)=>{
+        return {
+          claimId: document.payload.doc.id,
+          ...document.payload.doc.data() as Claim
+        }
+      });
+      console.log ("Data received >> ",this.claims);
+    })
+  }
+
+  editClaim(id: string){
+    console.log(id);
+  }
+
+  deleteClaim(id: string){
+    this.claimService.deleteClaim(id);
+  }
 
 }
