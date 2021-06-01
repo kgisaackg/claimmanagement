@@ -22,8 +22,10 @@ export class ClaimService {
   }
 
   updateClaim(claim: Claim){
+    console.log(claim);
+    const id = claim.id;
     delete claim.id;
-    this.afs.doc('claims/' + claim.id).update(claim);
+    this.afs.doc('claims/' + id).update(claim);
   }
 
   deleteClaim(claimId: string){

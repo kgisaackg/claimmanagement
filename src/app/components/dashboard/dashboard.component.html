@@ -1,8 +1,8 @@
 <app-header></app-header>
-  <div class="container mt-5">
-    <button mdbBtn color="info" type="submit" (click)="showAddClaim()" size="sm">Add a claim</button>
+<div class="container mt-5">
+  <button mdbBtn color="info" type="submit" (click)="showAddClaim()" size="sm">Add a claim</button>
     
-    <div class="mt-4">
+  <div class="mt-4">
       <!--Getting claim on buttom add-->
       <div *ngIf="showClaim">
         <app-claim></app-claim>
@@ -11,7 +11,7 @@
       <!--Table-->
       <div>
       </div>
-      <div class=" table-responsive">
+      <div class=" table-responsive" *ngIf="this.showContent==1">
         <table mdbTable *ngIf="!showClaim"> 
         <thead>
           <tr>
@@ -25,42 +25,76 @@
               <td class="py-2 px-1">{{claim.title}}</td>
               <td class="py-2 px-1">{{claim.claimDate}}</td>
               <td class="py-2 px-1">{{claim.message}}</td>
-              <td class="py-2 px-1"><mdb-icon fas class="btn-click green-text" icon="edit" (click)="editClaim(claim.claimId)"></mdb-icon></td>
+              <td class="py-2 px-1"><mdb-icon fas class="btn-click green-text" icon="edit" (click)="editClaim(claim)"></mdb-icon></td>
               <td class="py-2 px-1"><mdb-icon fas class="btn-click red-text" icon="trash" (click)="frame.show()"></mdb-icon></td>
+            <!--Pop up to verify deleting-->
               <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
-  aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
-    <!--Content-->
-    <div class="modal-content text-center">
-      <!--Header-->
-      <div class="modal-header d-flex justify-content-center">
-        <p class="heading">Are you sure?</p>
-      </div>
+                  aria-labelledby="myModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+                    <!--Content-->
+                    <div class="modal-content text-center">
+                      <!--Header-->
+                      <div class="modal-header d-flex justify-content-center">
+                        <p class="heading">Are you sure?</p>
+                      </div>
 
-      <!--Body-->
-      <div class="modal-body">
-        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
-      </div>
+                      <!--Body-->
+                      <div class="modal-body">
+                        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+                      </div>
 
-      <!--Footer-->
-      <div class="modal-footer justify-content-center">
-        <a  mdbBtn color="danger" outline="true" class="waves-effect"
-          mdbWavesEffect  (click)="deleteClaim(claim.claimId)">Yes</a>
-        <a type="button" mdbBtn color="danger" class="waves-effect"
-         mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
-      </div>
-    </div>
-    <!--/.Content-->
-  </div>
-</div>
+                      <!--Footer-->
+                      <div class="modal-footer justify-content-center">
+                        <a  mdbBtn color="danger" outline="true" class="waves-effect"
+                          mdbWavesEffect  (click)="deleteClaim(claim.id)">Yes</a>
+                        <a type="button" mdbBtn color="danger" class="waves-effect"
+                        mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+                      </div>
+                    </div>
+                    <!--/.Content-->
+                  </div>
+                </div>
+              <!--/** Pop up to verify deleting-->
             </tr>
         </tbody>
       </table>
       <!-- /** Table-->
-      </div>
-      
-    </div>
-  </div>
+    </div> 
 
-  <!--Popup when clicking delete-->
+   
+    
+  <mdb-card style="color: #757575;" *ngIf="this.showContent == 2 && !showClaim">
+    <mdb-card-body>
+          <h5>Edit a claim</h5>
+          <form [formGroup]="claimForm" (ngSubmit)="editSpecifClaim(updateClaim)">
+              <!-- First name -->
+              <div class="form-row">
+                 <!-- <div class="col">
+                    <p><b>Full names: </b>Username surname</p>
+                  </div>-->
+                  <div class="col">
+                    <p><b>Date: </b>{{updateClaim.claimDate}}</p>
+                  </div>
+              </div>
+              <div class="form-group row mb-0">
+                <label for="inputEmail3MD" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-10">
+                  <div class="md-form my-0">
+                    <input mdbInput type="text" class="form-control" placeholder="{{updateClaim.title}}" formControlName="title">
+                  </div>
+                </div>
+              </div>
+  
+              <div class="md-form mt-0">
+                  <textarea type="text" class="form-control md-textarea"
+                    mdbInput formControlName="message" placeholder="{{updateClaim.message}}"></textarea>
+                    <label>Message</label>
+              </div>
+              <button mdbBtn color="info" block="true" class="my-3" type="submit" size="sm">Send Claim</button>
+           </form>
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>
+
 

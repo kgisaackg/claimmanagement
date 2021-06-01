@@ -60,7 +60,7 @@ export class EditProfileComponent implements OnInit {
       firstname: this.updateForm.value.firstname, 
       lastname: this.updateForm.value.lastname,
       phoneNumber: this.updateForm.value.phoneNumber, 
-      email: "isaac@gmail.com"
+      email: this.updateForm.value.emailAddress
     }
 
     console.log(user);

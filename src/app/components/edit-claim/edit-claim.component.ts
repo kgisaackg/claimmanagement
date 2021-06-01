@@ -7,11 +7,11 @@ import { Claim } from 'src/app/types/claim';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-claim',
-  templateUrl: './claim.component.html',
-  styleUrls: ['./claim.component.scss']
+  selector: 'app-edit-claim',
+  templateUrl: './edit-claim.component.html',
+  styleUrls: ['./edit-claim.component.scss']
 })
-export class ClaimComponent implements OnInit {
+export class EditClaimComponent implements OnInit {
 
   claim: Claim;
 
@@ -39,13 +39,10 @@ export class ClaimComponent implements OnInit {
 
     this.cs.createClaim(this.claim);
     this.showSuccess();
-    
   }
 
   showSuccess() {
     this.toastr.success('Claim has been sent');
   }
-  
-  
 
 }

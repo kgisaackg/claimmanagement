@@ -1,5 +1,5 @@
 export class Claim{
-    id: string
+    id: null;
     claimantId: string;
     claimDate: string;
     title: string;
