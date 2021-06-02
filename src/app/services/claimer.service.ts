@@ -27,20 +27,4 @@ export class ClaimerService {
     this.afs.doc('users/' + ClaimantId).delete();
   }
 
- /* getById(docId: string): any{
-    return this.afs.collection('users').doc(docId)
-    .valueChanges().subscribe(item => {return item})
-  }
-
-  get(docId: string){
-    this.afs.collection('users').doc(docId).get().subscribe(function(doc) {
-      if (doc.exists) {
-        console.log("Document data:", doc.data());
-      } else {
-        // doc.data() will be undefined in this case
-        console.log("No such document!");
-      }
-    });
-  }*/
-
 }

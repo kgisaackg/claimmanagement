@@ -31,16 +31,4 @@ export class ClaimService {
   deleteClaim(claimId: string){
     this.afs.doc('claims/' + claimId).delete();
   }
-
-  /*to try*/
-  getById(docId: string): any{
-    return this.afs.collection('claim').doc(docId)
-    .valueChanges().subscribe(item => {return item})
-  }
-
-  get(docId: string): any{
-    return this.afs.collection('claim').doc(docId).ref.get().then(
-      (doc) => { return doc.data})
-  }
-
 }

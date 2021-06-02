@@ -25,7 +25,7 @@
                   mdbInput formControlName="message"></textarea>
                   <label>Message</label>
             </div>
-            <button mdbBtn color="info" block="true" class="my-3" type="submit" size="sm">Send Claim</button>
+            <button mdbBtn color="info" [disabled]='!claimForm.valid' block="true" class="my-3" type="submit" size="sm">Send Claim</button>
          </form>
     </mdb-card-body>
 </mdb-card>

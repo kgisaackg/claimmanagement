@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ClaimerService } from 'src/app/services/claimer.service';
 
@@ -21,10 +21,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateForm = this.fb.group({
-    firstname: [''],
-    lastname: [''],
-    phoneNumber: [''],
-    emailAddress: ['']
+    firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
+    lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
+    phoneNumber: ['', [Validators.required]],//have to add more
   });
 
   get firstname() { return this.updateForm.get('firstname')}
@@ -32,8 +31,6 @@ export class EditProfileComponent implements OnInit {
   get lastname() { return this.updateForm.get('lastname')}
 
   get phoneNumber() { return this.updateForm.get('phoneNumber')}
-
-  get emailAddress() { return this.updateForm.get('emailAddress')}
 
   onUpdate(fname: string, lname: string, phone: string, emailAddress: string){
 
@@ -49,18 +46,12 @@ export class EditProfileComponent implements OnInit {
       this.updateForm.value.lastname = lname;
     }
 
-    if(this.updateForm.value.emailAddress == ""){
-      this.updateForm.value.emailAddress = emailAddress;
-    }
-
-
-
     const user = {
       id: this.authS.currentUserId(),
       firstname: this.updateForm.value.firstname, 
       lastname: this.updateForm.value.lastname,
       phoneNumber: this.updateForm.value.phoneNumber, 
-      email: this.updateForm.value.emailAddress
+      email: emailAddress
     }
 
     console.log(user);

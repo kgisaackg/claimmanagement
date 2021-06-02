@@ -78,7 +78,7 @@ export class DashboardComponent implements OnInit {
   }
 
   showSuccess() {
-    this.toastr.success('Claim has been sent');
+    this.toastr.success('Claim has been updated');
   }
 
   updateClaim: Claim;
@@ -91,4 +91,7 @@ export class DashboardComponent implements OnInit {
     this.claimService.deleteClaim(id);
   }
 
+  closeContent(){
+    this.showContent = 1;
+  }
 }

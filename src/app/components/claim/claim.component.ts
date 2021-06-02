@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { ClaimService } from 'src/app/services/claim.service';
 import { Claim } from 'src/app/types/claim';
@@ -22,8 +22,8 @@ export class ClaimComponent implements OnInit {
   }
 
   claimForm = this.fb.group({
-    message: [],
-    title: []
+    message: ['', [Validators.required]],
+    title: ['', [Validators.required]]
   })
 
   today = this.datePipe.transform(Date.now(),"dd-MMMM-YYYY");
@@ -39,13 +39,12 @@ export class ClaimComponent implements OnInit {
 
     this.cs.createClaim(this.claim);
     this.showSuccess();
+    this.claimForm.reset();
     
   }
 
   showSuccess() {
     this.toastr.success('Claim has been sent');
   }
-  
-  
 
 }

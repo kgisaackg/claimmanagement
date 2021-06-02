@@ -15,11 +15,6 @@ export class AuthService {
 
     this.afAuth.authState.subscribe(user => {
       if (user){
-
-        console.log(user);
-        
-      
-        console.log(user.uid);
         this.userState = user.delete;
         localStorage.setItem('userId', user.uid);
       } else {
@@ -30,8 +25,6 @@ export class AuthService {
   }
 
   deleteUser(){
-    console.log(this.userState);
-    console.log("Dleted yearh g")
     return this.userState;
   }
 
@@ -40,7 +33,6 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    console.log(email, password);
   
     this.afAuth.signInWithEmailAndPassword(email, password)
     .then((value:any)  => {

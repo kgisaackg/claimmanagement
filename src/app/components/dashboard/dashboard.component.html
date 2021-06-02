@@ -12,6 +12,16 @@
       <div>
       </div>
       <div class=" table-responsive" *ngIf="this.showContent==1">
+
+        <!--The bellow is for searching have to do it
+        <div class="search">
+          <div class="md-form m-0">
+              <input mdbInput type="text" placeholder="Search by month..."/>
+              <button (click)="onSearch()" mdbBtn color="info" size="sm">Search</button>
+          </div>
+        </div>
+        /** end of for searching-->
+        
         <table mdbTable *ngIf="!showClaim"> 
         <thead>
           <tr>
@@ -65,7 +75,15 @@
     
   <mdb-card style="color: #757575;" *ngIf="this.showContent == 2 && !showClaim">
     <mdb-card-body>
-          <h5>Edit a claim</h5>
+         
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h5>Edit a claim</h5>
+            <div>
+              <button mdbBtn color="info" (click)="closeContent()" type="submit" size="sm">X</button>
+            </div>
+        </div>
+
           <form [formGroup]="claimForm" (ngSubmit)="editSpecifClaim(updateClaim)">
               <!-- First name -->
               <div class="form-row">
