@@ -30,6 +30,7 @@
         <mdb-card-body>
             <h3 class="text-center">Login</h3>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <p *ngIf="errorMessage"></p>
                 <div class="md-form">
                     <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
                     <input mdbInput type="text" id="form2" class="form-control" 

@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
 import { EditClaimComponent } from './components/edit-claim/edit-claim.component';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -64,7 +65,7 @@ const firebaseConfig = {
     BrowserAnimationsModule, 
     ToastrModule.forRoot()
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

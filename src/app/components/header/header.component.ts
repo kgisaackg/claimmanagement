@@ -18,7 +18,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
    console.log(this.authS.currentUserId);
    this.claimerService.getClaimant(this.authS.currentUserId())
-   .subscribe(doc => this.user = doc.data());
+   .subscribe(doc => { 
+    this.user = doc.data(); 
+    });
   }
 
   logOut(){

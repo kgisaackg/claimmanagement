@@ -18,6 +18,7 @@ export class ClaimService {
   }
 
   createClaim(claim: Claim){
+    delete claim.id;
     return this.afs.collection('claims').add(claim);
   }
 

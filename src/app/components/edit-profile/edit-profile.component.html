@@ -10,7 +10,7 @@
               <label for="materialRegisterFormFirstName">First name</label>
             </div>
             <!--Validation-->
-            <div *ngIf="firstname?.invalid && (firstname?.dirty || firstname?.touched)" class="text-danger">
+            <div *ngIf="firstname?.invalid && firstname?.dirty" class="text-danger">
               <small  *ngIf="firstname?.errors?.required"> *Name is required</small>
               <small  *ngIf="firstname?.errors?.pattern"> *Name  must be letters only</small>
               <small  *ngIf="firstname?.errors?.minlength"> *Name must have more than 3 letters</small>
@@ -23,7 +23,7 @@
               <label for="materialRegisterFormLastName">Last name</label>
             </div>
             <!--Validation-->
-            <div *ngIf="lastname?.invalid && (lastname?.dirty || lastname?.touched)" class="text-danger">
+            <div *ngIf="lastname?.invalid && lastname?.dirty" class="text-danger">
               <small  *ngIf="lastname?.errors?.required"> *Name is required</small>
               <small  *ngIf="lastname?.errors?.pattern"> *Name must be letters only</small>
               <small  *ngIf="lastname?.errors?.minlength"> *Name must have more than 3 letter</small>
@@ -36,8 +36,8 @@
                 <label for="materialRegisterFormPhone">Phone number</label>
             </div>
             <!--Validation-->
-            <div *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" class="text-danger">
-                <small *ngIf="phoneNumber?.errors?.required"> *Phone number is incorrect</small>
+            <div *ngIf="phoneNumber?.invalid && phoneNumber?.dirty" class="text-danger">
+              <small *ngIf="phoneNumber?.errors?.pattern">*Phone number is incorrect</small>
             </div>
 
             <!--Email Address-->

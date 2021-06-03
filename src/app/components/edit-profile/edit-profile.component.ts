@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { ClaimerService } from 'src/app/services/claimer.service';
 
@@ -13,7 +14,7 @@ export class EditProfileComponent implements OnInit {
   user: any;
 
   constructor(private fb: FormBuilder, private claimerService:
-    ClaimerService, private authS: AuthService) { }
+    ClaimerService, private authS: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.claimerService.getClaimant(this.authS.currentUserId())
@@ -21,9 +22,9 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateForm = this.fb.group({
-    firstname: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
-    lastname: ['', [Validators.required, Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
-    phoneNumber: ['', [Validators.required]],//have to add more
+    firstname: ['', [Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
+    lastname: ['', [Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
+    phoneNumber: ['', Validators.pattern('((0[6-8])|(\\+27))[0-9]{8}')],//have to add more
   });
 
   get firstname() { return this.updateForm.get('firstname')}
@@ -54,9 +55,12 @@ export class EditProfileComponent implements OnInit {
       email: emailAddress
     }
 
-    console.log(user);
-
     this.claimerService.updateClaimant(user);
+    this.showSuccess();
+  
   }
 
+  showSuccess() {
+    this.toastr.success('User has been updated');
+  }
 }

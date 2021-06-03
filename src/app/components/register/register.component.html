@@ -40,7 +40,8 @@
           </div>
           <!--Validation-->
           <div *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" class="text-danger">
-            <small *ngIf="phoneNumber?.errors?.required">*Phone number is incorrect</small>
+            <small *ngIf="phoneNumber?.errors?.required">*Phone number is required</small>
+            <small *ngIf="phoneNumber?.errors?.pattern">*Phone number is incorrect</small>
           </div>
 
           <div class="md-form mb-0">
@@ -63,7 +64,8 @@
           <!--validation-->
           <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
             <small  *ngIf="password?.errors?.required"> *password is required</small>
-            <small  *ngIf="password?.errors?.pattern"> *At least 8 characters and 1 digit</small>
+            <small  *ngIf="password?.errors?.pattern"> *Must be at least 8 characters one small letter, capital letter, 
+              number and specail character</small>
           </div>
   
            <!-- Password -->

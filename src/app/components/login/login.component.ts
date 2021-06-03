@@ -10,6 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
+  errorMessage = false;
+
   loginForm = this.fb.group({
     emailAddress: [''],
     password: [''],
@@ -24,4 +26,5 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.value);
     this.authService.login(this.loginForm.value.emailAddress, this.loginForm.value.password);
   }
+
 }
