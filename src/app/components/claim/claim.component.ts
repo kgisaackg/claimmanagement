@@ -6,6 +6,8 @@ import { ClaimService } from 'src/app/services/claim.service';
 import { Claim } from 'src/app/types/claim';
 import { ToastrService } from 'ngx-toastr';
 
+import {AngularFireStorage} from '@angular/fire/storage'
+
 @Component({
   selector: 'app-claim',
   templateUrl: './claim.component.html',
@@ -16,7 +18,7 @@ export class ClaimComponent implements OnInit {
   claim: Claim;
 
   constructor(private fb: FormBuilder, private cs: ClaimService, private as: AuthService,
-     private datePipe: DatePipe, private toastr: ToastrService) { }
+     private datePipe: DatePipe, private toastr: ToastrService, private afStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
   }
@@ -45,6 +47,17 @@ export class ClaimComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success('Claim has been sent');
+  }
+
+
+  //for file upload 
+  filePath:String
+  upload(event) {    
+    this.filePath = event.target.files[0]
+  }
+  uploadImage(){
+    console.log(this.filePath)
+    this.afStorage.upload('/images'+Math.random()+this.filePath, this.filePath);
   }
 
 }

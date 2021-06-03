@@ -28,8 +28,8 @@ export class AuthService {
   }
 
   deleteUser(){
-    console.log(this.userState);
-    this.afAuth.currentUser.then(auth => auth.delete);
+    console.log(this.afAuth.currentUser);
+    this.afAuth.currentUser.then(auth => auth.delete());
   }
 
   currentUserId(): string {

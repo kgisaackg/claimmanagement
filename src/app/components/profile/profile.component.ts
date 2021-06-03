@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
   }
 
   deleteAccount(){
+    console.log("Delete has been called")
     this.claimerService.deleteClaimant(this.authS.currentUserId());
     this.authS.deleteUser();
     localStorage.clear();

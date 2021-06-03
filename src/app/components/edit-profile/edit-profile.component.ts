@@ -57,7 +57,6 @@ export class EditProfileComponent implements OnInit {
 
     this.claimerService.updateClaimant(user);
     this.showSuccess();
-  
   }
 
   showSuccess() {

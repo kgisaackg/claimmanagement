@@ -11,7 +11,7 @@
   </div>
 
   <!--Personal Detials-->
-  <h5 style="color: #757575;" class="m-2">Personal Details</h5>
+  <h5 style="color: #757575;" class="m-2">Personal Details: <small style="color: #757575;">{{user?.uid | slice:0:6}}</small></h5>
   <mdb-card class="m-1" style="color: #757575; max-width: 99%;">
     <mdb-card-body>
        <p><b>First name:</b> {{user?.firstname}}</p>
@@ -25,9 +25,38 @@
   <mdb-card class="m-1" style="color: #757575; max-width: 99%;">
     <mdb-card-body>
        <p><b>Phone number:</b> {{user?.phoneNumber}}</p>
-       <p><b>Email adddress:</b>{{user?.email}}</p>
+       <p><b>Email adddress:</b> {{user?.email}}</p>
     </mdb-card-body>
   </mdb-card>
 
-  <button mdbBtn class="mt-3 mb-5" color="danger" (click)="deleteAccount()" type="submit" size="sm">Delete</button>
+  <button mdbBtn class="mt-3 mb-5" color="danger" (click)="frame.show()" type="submit" size="sm">Delete</button>
+
+  <!--Pop up to verify deleting-->
+  <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <!--Content-->
+    <div class="modal-content text-center">
+      <!--Header-->
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">User will be permenatly deleted, are you sure?</p>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <mdb-icon fas icon="times" size="4x" class="animated rotateIn"></mdb-icon>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a  mdbBtn color="danger" outline="true" class="waves-effect"
+          mdbWavesEffect  (click)="deleteAccount()">Yes</a>
+        <a type="button" mdbBtn color="danger" class="waves-effect"
+        mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">No</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--/** Pop up to verify deleting-->
 </div>
