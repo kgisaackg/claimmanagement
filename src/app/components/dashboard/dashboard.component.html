@@ -1,16 +1,15 @@
 <app-header></app-header>
 <div class="container mt-5">
   <button mdbBtn color="info" type="submit" (click)="showAddClaim()" size="sm">Add a claim</button>
-    
   <div class="mt-4">
       <!--Getting claim on buttom add-->
+      <h5 class="mb-2">Pending claims</h5>
       <div *ngIf="showClaim">
         <app-claim></app-claim>
       </div>
       
       <!--Table-->
-      <div>
-      </div>
+    
       <div class=" table-responsive" *ngIf="this.showContent==1">
 
         <!--The bellow is for searching have to do it
@@ -21,7 +20,6 @@
           </div>
         </div>
         /** end of for searching-->
-        
         <table mdbTable *ngIf="!showClaim"> 
         <thead>
           <tr>

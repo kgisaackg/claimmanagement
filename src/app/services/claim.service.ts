@@ -13,6 +13,16 @@ export class ClaimService {
     return this.afs.collection('claims').snapshotChanges();
   }
 
+  getPendingClaims(){
+    return this.afs.collection('claims',
+     ref => ref.where("status", "==", "pending")).snapshotChanges();
+  }
+
+  getFinilisedClaims(){
+    return this.afs.collection('claims',
+     ref => ref.where("status", "!=", "pending")).snapshotChanges();
+  }
+
   getClaim(claimId: string){
     return this.afs.collection('claim').doc(claimId).get();
   }

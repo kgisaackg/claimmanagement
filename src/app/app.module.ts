@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { EditClaimComponent } from './components/edit-claim/edit-claim.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
+import { FinalizedClaimsComponent } from './components/finalized-claims/finalized-claims.component';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -51,7 +52,8 @@ const firebaseConfig = {
     ClaimComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    EditClaimComponent
+    EditClaimComponent,
+    FinalizedClaimsComponent
   ],
   imports: [
     BrowserModule,

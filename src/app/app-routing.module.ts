@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClaimComponent } from './components/claim/claim.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
+import { FinalizedClaimsComponent } from './components/finalized-claims/finalized-claims.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: "editprofile", component: EditProfileComponent, canActivate: [ActiveClaimantGuard]},
   {path: "claim", component: ClaimComponent, canActivate: [ActiveClaimantGuard]},
   {path: "dashboard", component: DashboardComponent, canActivate: [ActiveClaimantGuard]},
+  {path: "finalisedclaim", component: FinalizedClaimsComponent, canActivate: [ActiveClaimantGuard]},
   {path: '**', component: PageNotFoundComponent}
 ];
 

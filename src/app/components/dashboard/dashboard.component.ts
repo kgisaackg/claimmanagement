@@ -22,7 +22,8 @@ export class DashboardComponent implements OnInit {
     private as: AuthService, private datePipe: DatePipe, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.getClaims();
+   // this.getClaims();
+    this.getPendingClaims();
   }
 
   claimForm = this.fb.group({
@@ -38,6 +39,20 @@ export class DashboardComponent implements OnInit {
     console.log("Have logged out");
   }
 
+  getPendingClaims(){
+    console.log('----------------------------');
+    this.claimService.getPendingClaims().subscribe(res =>{
+      this.claims = res.map ( (document)=>{
+        return {
+          id: document.payload.doc.id,
+          ...document.payload.doc.data() as Claim
+        }
+      });
+      console.log ("Data received >> ",this.claims);
+    })
+  }
+
+  //the bellow has to be moved to the admin
   getClaims(){
     this.claimService.getClaims().subscribe(res =>{
       this.claims = res.map ( (document)=>{
@@ -68,7 +83,8 @@ export class DashboardComponent implements OnInit {
       claimantId: this.as.currentUserId(),
       claimDate: this.updateClaim.claimDate,
       title: this.claimForm.value.title,
-      message: this.claimForm.value.message
+      message: this.claimForm.value.message,
+      status: "pending" 
     }
 
 

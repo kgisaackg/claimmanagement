@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div class="container mt-5">
+    <div class="table-responsive">
+
+        <table mdbTable> 
+            <thead>
+              <tr>
+                <th class="py-2 px-1">Title</th>
+                <th class="py-2 px-1">Date</th>
+                <th class="py-2 px-1">Message</th>
+                <th class="py-2 px-1">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let claim of claims">
+                  <td class="py-2 px-1">{{claim.title}}</td>
+                  <td class="py-2 px-1">{{claim.claimDate}}</td>
+                  <td class="py-2 px-1">{{claim.message}}</td>
+                  <td class="py-2 px-1">{{claim.status}}</td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

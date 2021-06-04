@@ -25,8 +25,11 @@ export class ClaimComponent implements OnInit {
 
   claimForm = this.fb.group({
     message: ['', [Validators.required]],
-    title: ['', [Validators.required]]
+    title: ['', [Validators.required]],
+    validationImage: ['', [Validators.required]]
   })
+
+  get validationImage() { return this.claimForm.get('validationImage')}
 
   today = this.datePipe.transform(Date.now(),"dd-MMMM-YYYY");
   submitClaim(){
@@ -36,7 +39,8 @@ export class ClaimComponent implements OnInit {
       claimantId: this.as.currentUserId(),
       claimDate: this.today,
       title: this.claimForm.value.title,
-      message: this.claimForm.value.message
+      message: this.claimForm.value.message,
+      status: "pending"
     }
 
     this.cs.createClaim(this.claim);

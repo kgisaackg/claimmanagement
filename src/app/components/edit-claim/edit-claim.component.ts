@@ -34,7 +34,8 @@ export class EditClaimComponent implements OnInit {
       claimantId: this.as.currentUserId(),
       claimDate: this.today,
       title: this.claimForm.value.title,
-      message: this.claimForm.value.message
+      message: this.claimForm.value.message,
+      status: "pending"
     }
 
     this.cs.createClaim(this.claim);

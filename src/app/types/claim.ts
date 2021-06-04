@@ -4,4 +4,5 @@ export class Claim{
     claimDate: string;
     title: string;
     message: string;
+    status: string;
 }
