@@ -12,6 +12,7 @@ export class ClaimaTableComponent implements OnInit {
 
   validatingForm: FormGroup;
   claims: Claims[] = [];
+  claimDate1: any;
 
   constructor(public rs: RestService) { }
 
@@ -26,6 +27,16 @@ export class ClaimaTableComponent implements OnInit {
       message: new FormControl('', Validators.required),
       status: new FormControl('', Validators.required)
     });
+  }
+
+  Search() {
+    if (this.claimDate1 == "") {
+      this.ngOnInit();
+    } else {
+      this.claims = this.claims.filter(res => {
+        return res.claimDate.toLocaleLowerCase().match(this.claimDate1.toLocaleLowerCase());
+      });
+    }
   }
 
   get claimNum() {
