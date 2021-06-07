@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Claimant Table</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center">Claim Number</th>
+                    <th class="text-center">Claim Date</th>
+                    <th class="text-center">Message</th>
+                    <th class="text-center">Status</th>
+                </tr>
+                <tr *ngFor="let person of personList; let id = index">
+                    <td>
+                        <span (keyup)="changeValue(id, 'claimNun', $event)" (blur)="updateList(id, 'claimNun', $event)" contenteditable="true">{{person.claimNun}}</span>
+                    </td>
+                    <td>
+                        <span (keyup)="changeValue(id, 'date', $event)" (blur)="updateList(id, 'date', $event)">{{person.date}}</span>
+                    </td>
+                    <td>
+                        <span (keyup)="changeValue(id, 'sms', $event)" (blur)="updateList(id, 'sms', $event)">{{person.sms}}</span>
+                    </td>
+                    <td>
+                        <span (keyup)="changeValue(id, 'stats', $event)" (blur)="updateList(id, 'stats', $event)">{{person.stats}}</span>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

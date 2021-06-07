@@ -1,0 +1,125 @@
+<app-header></app-header>
+
+<!-- Editable table -->
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Claims Table</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center">Claim Number</th>
+                    <th class="text-center">Claim Date</th>
+                    <th class="text-center">Message</th>
+                    <th class="text-center">Status</th>
+                    <th class="text-center">Action</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let claim of claims">
+                        <td>
+                            <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{claim.claimNum}}</span>
+                        </td>
+                        <td>
+                            <span contenteditable="true" (keyup)="changeValue(id, 'age', $event)" (blur)="updateList(id, 'age', $event)">{{claim.claimDate}}</span>
+                        </td>
+                        <td>
+                            <span contenteditable="true" (keyup)="changeValue(id, 'companyName', $event)" (blur)="updateList(id, 'companyName', $event)">{{claim.message}}</span>
+                        </td>
+                        <td>
+                            <span contenteditable="true" (keyup)="changeValue(id, 'country', $event)" (blur)="updateList(id, 'country', $event)">{{claim.status}}</span>
+                        </td>
+                        <td>
+                            <span class="table-remove">
+                                <button type="button" mdbBtn color="default" rounded="true" size="sm" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect>Edit
+                                </button>
+                                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="delete_row(no)">Remove</button>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+
+                <!--<tr *ngFor="let person of personList; let id = index">
+                    <td>
+                        <span (keyup)="changeValue(id, 'name', $event)" (blur)="updateList(id, 'name', $event)" contenteditable="true">{{person.name}}</span>
+                    </td>
+                    <td>
+                        <span contenteditable="true" (keyup)="changeValue(id, 'age', $event)" (blur)="updateList(id, 'age', $event)">{{person.age}}</span>
+                    </td>
+                    <td>
+                        <span contenteditable="true" (keyup)="changeValue(id, 'companyName', $event)" (blur)="updateList(id, 'companyName', $event)">{{person.companyName}}</span>
+                    </td>
+                    <td>
+                        <span contenteditable="true" (keyup)="changeValue(id, 'country', $event)" (blur)="updateList(id, 'country', $event)">{{person.country}}</span>
+                    </td>
+                    <td>
+                        <span contenteditable="true" (keyup)="changeValue(id, 'city', $event)" (blur)="updateList(id, 'city', $event)">{{person.city}}</span>
+                    </td>
+                    <td>
+                        <span class="table-remove">
+                <button type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" (click)="remove(id)">Remove</button>
+              </span>
+                    </td>
+                </tr>-->
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Editable table -->
+
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Info</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input type="text" id="orangeForm-name" class="form-control" [formControl]="claimNum" mdbInput mdbValidate>
+                    <label for="orangeForm-name">Claim Number</label>
+                    <mdb-error *ngIf="claimNum.invalid && (claimNum.dirty || claimNum.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="claimNum.valid && (claimNum.dirty || claimNum.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+                <div class="md-form mb-5">
+                    <input type="date" id="orangeForm-email" class="form-control" [formControl]="claimDate" mdbInput mdbValidate>
+                    <label for="orangeForm-email">Claim Date</label>
+                    <mdb-error *ngIf="claimDate.invalid && (claimDate.dirty || claimDate.touched)">Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="claimDate.valid && (claimDate.dirty || claimDate.touched)">Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-4">
+                    <input type="text" id="orangeForm-pass" class="form-control" [formControl]="message" mdbInput mdbValidate>
+                    <label for="orangeForm-pass">Message</label>
+                    <mdb-error *ngIf="message.invalid && (message.dirty || message.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="message.valid && (message.dirty || message.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+
+                <div class="md-form mb-4">
+                    <input type="text" id="orangeForm-pass" class="form-control" [formControl]="status" mdbInput mdbValidate>
+                    <label for="orangeForm-pass">Status</label>
+                    <mdb-error *ngIf="status.invalid && (status.dirty || status.touched)">
+                        Input invalid
+                    </mdb-error>
+                    <mdb-success *ngIf="status.valid && (status.dirty || status.touched)">
+                        Input valid
+                    </mdb-success>
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="deep-orange" class="waves-light" (click)="frame.hide()" mdbWavesEffect>Save</button>
+            </div>
+        </div>
+    </div>
+</div>

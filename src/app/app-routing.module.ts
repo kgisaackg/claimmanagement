@@ -7,6 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ClaimantTableComponent } from './components/claimant-table/claimant-table.component';
+import { ClaimaTableComponent } from './components/claima-table/claima-table.component';
 
 const routes: Routes = [
   {path: "", component: LoginComponent},
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path: "profile", component: ProfileComponent},
   {path: "editprofile", component: EditProfileComponent},
   {path: "claim", component: ClaimComponent},
+  {path: "claimantTable", component: ClaimantTableComponent},
+  {path: "claimTable", component: ClaimaTableComponent},
   {path: "dashboard", component: DashboardComponent},
   {path: '**', component: PageNotFoundComponent}
 ];

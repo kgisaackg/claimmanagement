@@ -1,0 +1,38 @@
+{
+    "Claims": [{
+            "id": 1,
+            "claimNum": 1,
+            "claimDate": "01-May-2021",
+            "message": "majsj kajaj aksjak",
+            "status": "Approved"
+        },
+        {
+            "id": 2,
+            "claimNum": 2,
+            "claimDate": "02-May-2021",
+            "message": "majsj kajaj aksjak",
+            "status": "Pending"
+        },
+        {
+            "id": 3,
+            "claimNum": 3,
+            "claimDate": "03-May-2021",
+            "message": "majsj kajaj aksjak",
+            "status": "Rejected"
+        },
+        {
+            "id": 4,
+            "claimNum": 4,
+            "claimDate": "04-May-2021",
+            "message": "majsj kajaj aksjak",
+            "status": "Approved"
+        },
+        {
+            "id": 5,
+            "claimNum": 5,
+            "claimDate": "05-May-2021",
+            "message": "majsj kajaj aksjak",
+            "status": "Approved"
+        }
+    ]
+}

@@ -17,6 +17,12 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { ClaimComponent } from './components/claim/claim.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ClaimantTableComponent } from './components/claimant-table/claimant-table.component';
+import { ClaimaTableComponent } from './components/claima-table/claima-table.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -28,16 +34,22 @@ import { HeaderComponent } from './components/header/header.component';
     EditProfileComponent,
     ClaimComponent,
     PageNotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    ClaimantTableComponent,
+    ClaimaTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    Ng2OrderModule,
+    NgxPaginationModule
   ],
-  providers: [],
+  providers: [HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
