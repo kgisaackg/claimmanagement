@@ -32,8 +32,47 @@ export class ClaimComponent implements OnInit {
   get validationImage() { return this.claimForm.get('validationImage')}
 
   today = this.datePipe.transform(Date.now(),"dd-MMMM-YYYY");
-  submitClaim(){
+
+
+  //for file upload 
+  filePath:String
+  upload(event) {    
+    this.filePath = event.target.files[0]
+  }
+
+  urlPath = "uknown";
+  uploadImage(){
+    console.log(this.filePath)
+    ;
+    //urlPath  = '/images'+Math.random()+this.filePath, this.filePath;
+    this.urlPath  = '/pdf'+Math.random()+this.filePath;
+    /*this.afStorage.upload(this.urlPath, this.filePath)
+    .then(f => console.log(f));j*/
+    this.uploadFile();
+  }
+
+   //method to upload file at firebase storage
+    url = null;
+   async uploadFile() {
     
+      const filePath = this.urlPath;    //path at which image will be stored in the firebase storage
+      const snap = await this.afStorage.upload(filePath, this.filePath);    //upload task
+      console.log(snap);
+      this.getUrl(snap);
+    
+  }
+
+  //method to retrieve download url
+  private async getUrl(snap: any) {
+    const url = await snap.ref.getDownloadURL();
+    this.url = url;  //store the URL
+    console.log(this.url);
+  }
+  
+
+  submitClaim(){
+    /*
+    this.uploadImage();
     this.claim ={
       id: null,
       claimantId: this.as.currentUserId(),
@@ -43,7 +82,10 @@ export class ClaimComponent implements OnInit {
       status: "pending"
     }
 
-    this.cs.createClaim(this.claim);
+    this.cs.createClaim(this.claim);*/
+    this.cs.sendEmail()
+    .subscribe(e => console.log(e), err => console.log(err));
+
     this.showSuccess();
     this.claimForm.reset();
     
@@ -51,17 +93,6 @@ export class ClaimComponent implements OnInit {
 
   showSuccess() {
     this.toastr.success('Claim has been sent');
-  }
-
-
-  //for file upload 
-  filePath:String
-  upload(event) {    
-    this.filePath = event.target.files[0]
-  }
-  uploadImage(){
-    console.log(this.filePath)
-    this.afStorage.upload('/images'+Math.random()+this.filePath, this.filePath);
   }
 
 }

@@ -1,36 +1,13 @@
-<!--
-<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-info ie-nav fixed-top" [containerInside]="false">
-    <mdb-navbar-brand>
-        <a class="logo navbar-brand" href="#"><strong>eClaims</strong></a>
-    </mdb-navbar-brand>
-    <links>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link">About</a>
-            </li>
-            <li class="nav-item waves-light" mdbWavesEffect>
-                <a class="nav-link"><mdb-icon fab icon="instagram"></mdb-icon></a>
-            </li>
-        </ul>
-    </links>
-</mdb-navbar>
--->
 <div id="about">
    <div class="about">
-      
-   <!-- <div class="about-claim about-item">
-        <h3 class="text-info pt-5">CoTRA eClaims management system</h3>
-        <p class="pt-5">
-            The claim management application design is to be kept as simple as surfing the internet. This means that even a non-technical person can also understand the processing on the application easily. 
-        </p>
-    </div> -->
+    
     <div class="about-item">
         <h1 class="text-center text-info">eClaims</h1>
     <mdb-card style="color: #757575">
         <mdb-card-body>
             <h3 class="text-center">Login</h3>
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <p *ngIf="errorMessage"></p>
+                
                 <div class="md-form">
                     <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
                     <input mdbInput type="text" id="form2" class="form-control" 
@@ -44,6 +21,13 @@
                     <label for="form2">Password</label>
                 </div>
     
+                <!--               
+                 <div class="radioRow my-4">
+                    <label>Role</label><br/>
+                    <input type="radio" name="role" id="defaultChecked" formControlName="role" class="radio-size" value="user" checked mdInput> User
+                    <input type="radio" name="role" formControlName="role" class="radio-size" value="manager" mdInput> Manager
+                </div>
+            -->
                 <p class="text-center">Are you new to eClaims?
                     <a routerLink="/register" >Register</a>
                 </p>

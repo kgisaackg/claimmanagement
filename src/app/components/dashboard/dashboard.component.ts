@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   showContent = 1;
 
   showClaim = false;
-  constructor(private fb: FormBuilder, private claimService: ClaimService,
+  constructor(private fb: FormBuilder, public claimService: ClaimService,
     private as: AuthService, private datePipe: DatePipe, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
 
   //the bellow has to be moved to the admin
   getClaims(){
+    this.claimService.isLoading.next(true);
     this.claimService.getClaims().subscribe(res =>{
       this.claims = res.map ( (document)=>{
         return {
@@ -62,6 +63,7 @@ export class DashboardComponent implements OnInit {
         }
       });
       console.log ("Data received >> ",this.claims);
+      this.claimService.isLoading.next(false);
     })
   }
 

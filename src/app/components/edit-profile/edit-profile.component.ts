@@ -24,7 +24,7 @@ export class EditProfileComponent implements OnInit {
   updateForm = this.fb.group({
     firstname: ['', [Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
     lastname: ['', [Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
-    phoneNumber: ['', Validators.pattern('((0[6-8])|(\\+27))[0-9]{8}')],//have to add more
+    phoneNumber: ['', Validators.pattern('((0[6-8]))[0-9]{8}|((\\+27))[6-8][0-9]{8}')],//have to add more
   });
 
   get firstname() { return this.updateForm.get('firstname')}

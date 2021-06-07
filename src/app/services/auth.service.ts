@@ -4,11 +4,15 @@ import { Router } from  "@angular/router";
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { LoginComponent } from '../components/login/login.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  public isError: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public msg: BehaviorSubject<string> = new BehaviorSubject<string>("msg");
 
   userState = null;
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router,
@@ -36,19 +40,23 @@ export class AuthService {
     return localStorage.getItem('userId');
   }
 
-  login(email: string, password: string) {
+  login(email: string, password: string, role: string) {
   
     this.afAuth.signInWithEmailAndPassword(email, password)
     .then((value:any)  => {
-      console.log('Nice, it worked!');
-      //the beloow is uid
-      console.log(value.user.uid);
-      console.log(value.user.X.X);
-      localStorage.setItem('userId', value.user.X.X);
-      this.router.navigateByUrl('/dashboard');
+
+      if(role == "user"){
+        localStorage.setItem('userId', value.user.X.X);
+        this.router.navigateByUrl('/dashboard');
+      }else{
+        localStorage.setItem('managerId', value.user.X.X);
+        this.router.navigateByUrl('/manager');
+      }
     })
     .catch((err:any) => {
       console.log('Something went wrong: ', err.message);
+      this.isError.next(true);
+      this.msg.next(err.message)
       alert(err.message);
      
     });
@@ -65,7 +73,7 @@ export class AuthService {
     this.afAuth.createUserWithEmailAndPassword(email, password)
     .then((value: any) => {
       console.log(value);
-     const user = {
+      const user = {
        firstname, 
        lastname,
        phoneNumber,
@@ -77,7 +85,7 @@ export class AuthService {
       console.log(value.user.X.X);
       console.log(value.user.uid);
       localStorage.setItem('userId', value.user.X.X);
-     this.router.navigateByUrl('/dashboard');
+      this.router.navigateByUrl('/dashboard');
     })
     .catch(error => {
       console.log('Something went wrong: ', error);

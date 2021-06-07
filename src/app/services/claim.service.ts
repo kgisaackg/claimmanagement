@@ -1,13 +1,25 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Claim } from "../types/claim"
+import { BehaviorSubject } from 'rxjs';
+import { Claim } from "../types/claim";
+import { HttpClient, HttpErrorResponse} from  '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClaimService {
 
-  constructor(private afs: AngularFirestore) { }
+  url = "https://formspree.io/f/mvodajbv";
+
+  public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  constructor(private afs: AngularFirestore, private http: HttpClient) { }
+
+  sendEmail(){
+    const customerData = "Hello Isaac malebana";
+    return this.http.post(this.url, customerData);
+  }
+
 
   getClaims() {
     return this.afs.collection('claims').snapshotChanges();
@@ -15,12 +27,14 @@ export class ClaimService {
 
   getPendingClaims(){
     return this.afs.collection('claims',
-     ref => ref.where("status", "==", "pending")).snapshotChanges();
+     ref => ref.where("status", "==", "pending")
+     .where("claimantId", "==", localStorage.getItem('userId'))).snapshotChanges();
   }
 
   getFinilisedClaims(){
     return this.afs.collection('claims',
-     ref => ref.where("status", "!=", "pending")).snapshotChanges();
+     ref => ref.where("status", "!=", "pending")
+     .where("claimantId", "==", localStorage.getItem('userId'))).snapshotChanges();
   }
 
   getClaim(claimId: string){

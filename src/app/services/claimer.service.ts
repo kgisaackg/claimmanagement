@@ -20,11 +20,7 @@ export class ClaimerService {
     console.log(Claimant);
     const ClaimantId =  Claimant.id
     delete Claimant.id;
-    this.afs.doc('users/' + ClaimantId).update(Claimant)
-    .then(() => {
-      //to make sure the displayed values will update on the view 
-      location.reload();
-    });
+    this.afs.doc('users/' + ClaimantId).update(Claimant);
   }
 
   deleteClaimant(ClaimantId: string){

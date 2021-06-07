@@ -29,6 +29,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { EditClaimComponent } from './components/edit-claim/edit-claim.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { FinalizedClaimsComponent } from './components/finalized-claims/finalized-claims.component';
+import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
+
+import { HttpClientModule} from  '@angular/common/http';
+
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -53,7 +57,8 @@ const firebaseConfig = {
     PageNotFoundComponent,
     HeaderComponent,
     EditClaimComponent,
-    FinalizedClaimsComponent
+    FinalizedClaimsComponent,
+    ManagerDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ const firebaseConfig = {
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule, 
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    HttpClientModule
   ],
   providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]

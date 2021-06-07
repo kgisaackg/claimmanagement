@@ -4,9 +4,6 @@
         <form [formGroup]="claimForm" (ngSubmit)="submitClaim()">
             <!-- First name -->
             <div class="form-row">
-               <!-- <div class="col">
-                  <p><b>Full names: </b>Username surname</p>
-                </div>-->
                 <div class="col">
                   <p><b>Date: </b>{{today}}</p>
                 </div>
@@ -27,7 +24,7 @@
             </div>
             <div *ngIf="validationImage?.invalid && (validationImage?.dirty || 
               validationImage?.touched)" class="text-danger">
-              <small *ngIf="validationImage?.errors?.required"> *document is required</small>
+              <small *ngIf="validationImage?.errors?.required">*document is required</small>
             </div>
 
             <!--

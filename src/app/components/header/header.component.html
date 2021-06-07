@@ -1,34 +1,37 @@
-<!--Claim,  call appointment, claim hisotyr-->
-<!--Navbar-->
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-info" [containerInside]="false">
 
-    <!-- Navbar brand -->
-    <mdb-navbar-brand><a class="navbar-brand" href="">eClaims</a></mdb-navbar-brand>
-  
-    <!-- Collapsible content -->
-    <links>
-  
-      <!-- Links -->
-      <ul class="navbar-nav ml-auto">
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/dashboard">eClaims</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link link-bg waves-light" mdbWavesEffect routerLink="/dashboard">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-bg waves-light" mdbWavesEffect routerLink="/finalisedclaim">Finalised Claims</a>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
         <!-- Dropdown -->
-        
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link" routerLink=""></a>
-        </li>
-        
         <li class="nav-item dropdown" dropdown>
-          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-            <mdb-icon fas icon="user"></mdb-icon>{{user?.firstname}}<span class="caret"></span></a>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon><span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/dashboard">Home</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/finalisedclaim">Finalised Claims</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/profile">Account</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect (click)="logOut()">Logout</a>
+            <b class="dropdown-item b" disabled>{{user?.email}}</b>
+            <a class="dropdown-item link-bg" mdbWavesEffect routerLink="/profile">Account</a>
+            <a class="dropdown-item link-bg"  mdbWavesEffect (click)="logOut()">Logout</a>
           </div>
         </li>
+  
       </ul>
       <!-- Links -->
-    </links>
-    <!-- Collapsible content -->
+  </links>
+  <!-- Collapsible content -->
+
 </mdb-navbar>
-  
+
