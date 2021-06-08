@@ -1,0 +1,61 @@
+<!--Main Navigation-->
+<header>
+
+    <!-- Sidebar -->
+    <div class="sidebar-fixed position-fixed navbar-dark bg-info">
+
+        <a class="logo-wrapper waves-effect">
+           eClaims
+        </a>
+
+        <div class="list-group list-group-flush">
+
+            <a routerLink="../dsstats" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="chart-pie" class="mr-3"></mdb-icon>Dashboard
+            </a>
+            <a routerLink="../dsclaiment" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Claiment
+            </a>
+            <a routerLink="../dspendingclaims" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="sort-amount-down-alt" class="mr-3"></mdb-icon>Pending Claims
+            </a>
+
+            <a routerLink="../dsfinalisedclaims" routerLinkActive="active"
+                class="list-group-item list-group-item-action waves-effect">
+                <mdb-icon fas icon="sort-amount-down-alt" class="mr-3"></mdb-icon>Finalised Claims
+            </a>
+        </div>
+
+    </div>
+    <!-- Sidebar -->
+
+    <!--Navbar-->
+    <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-info" [containerInside]="false">
+
+        <mdb-navbar-brand><a class="navbar-brand" routerLink="/dashboard">eClaims</a></mdb-navbar-brand>
+      
+        <!-- Collapsible content -->
+        <links>
+          <ul class="navbar-nav ml-auto nav-flex-icons">
+              <!-- Dropdown -->
+              <li class="nav-item dropdown" dropdown>
+                <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle" mdbWavesEffect>
+                  <mdb-icon fas icon="user"></mdb-icon><span class="caret"></span></a>
+                <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+                  <b class="dropdown-item b" disabled>{{user?.email}}</b>
+                  <a class="dropdown-item link-bg"  mdbWavesEffect (click)="logOut()">Logout</a>
+                </div>
+              </li>
+            </ul>
+            <!-- Links -->
+        </links>
+        <!-- Collapsible content -->
+      </mdb-navbar>
+    <!--/.Navbar-->
+
+
+</header>
+<!--Main Navigation-->

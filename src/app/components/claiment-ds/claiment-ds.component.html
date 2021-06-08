@@ -1,0 +1,33 @@
+
+ <app-admin></app-admin>
+
+ <div class="card">
+   
+   <!--Spinner-->
+   <div *ngIf="claimService.isLoading | async" class="d-flex justify-content-center">
+    <div class="spinner-border text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <!-- /** Spinner-->
+
+  <h3 class="text-info">Claiments</h3>
+ <table mdbTable> 
+     <thead>
+       <tr>
+         <th class="py-2 px-1">Email</th>
+         <th class="py-2 px-1">Firstname</th>
+         <th class="py-2 px-1">Lastname</th>
+         <th class="py-2 px-1">Phone no</th>
+       </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let user of users">
+           <td class="py-2 px-1">{{user.email}}</td>
+           <td class="py-2 px-1">{{user.firstname}}</td>
+           <td class="py-2 px-1">{{user.lastname}}</td>
+           <td class="py-2 px-1">{{user.phoneNumber}}</td>
+         </tr>
+     </tbody>
+     </table>
+ </div>

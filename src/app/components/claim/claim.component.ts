@@ -42,8 +42,7 @@ export class ClaimComponent implements OnInit {
 
   urlPath = "uknown";
   uploadImage(){
-    console.log(this.filePath)
-    ;
+  
     //urlPath  = '/images'+Math.random()+this.filePath, this.filePath;
     this.urlPath  = '/pdf'+Math.random()+this.filePath;
     /*this.afStorage.upload(this.urlPath, this.filePath)
@@ -71,7 +70,7 @@ export class ClaimComponent implements OnInit {
   
 
   submitClaim(){
-    /*
+    
     this.uploadImage();
     this.claim ={
       id: null,
@@ -82,9 +81,8 @@ export class ClaimComponent implements OnInit {
       status: "pending"
     }
 
-    this.cs.createClaim(this.claim);*/
-    this.cs.sendEmail()
-    .subscribe(e => console.log(e), err => console.log(err));
+    this.cs.createClaim(this.claim);
+    //this.cs.sendEmail()
 
     this.showSuccess();
     this.claimForm.reset();

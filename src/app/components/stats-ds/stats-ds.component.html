@@ -1,0 +1,44 @@
+
+ <app-admin></app-admin>
+
+<div class="card f">
+    <!--Demo charts-->
+    <h3 class="text-info">Dashboard</h3>
+    <div class="d-flex  justify-content-between flex-wrap">
+        <div class="mt-2 cust-card">
+          <h1>
+            <span>{{this.numUsers}}</span>
+          </h1>
+          <p class="text-right p-2">Claiment</p>
+        </div>
+  
+        <div class="mt-2 cust-card">
+          <h1>
+            <span></span>
+          </h1>
+          <p class="text-right p-2">Pending Claims</p>
+        </div>
+  
+        <div class="mt-2 cust-card">
+          <h1>
+            <span></span>
+          </h1>
+          <p class="text-right p-2">Finalised Claims</p>
+        </div>
+  
+   </div>
+
+    <div style="display: block" class="my-5 graph">
+        <canvas mdbChart
+            [chartType]="chartType"
+            [datasets]="chartDatasets"
+            [labels]="chartLabels"
+            [colors]="chartColors"
+            [options]="chartOptions"
+            [legend]="true"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    <!--End of demo charts-->
+</div>

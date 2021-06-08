@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { ClaimerService } from 'src/app/services/claimer.service';
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,17 +15,22 @@ export class EditProfileComponent implements OnInit {
   user: any;
 
   constructor(private fb: FormBuilder, private claimerService:
-    ClaimerService, private authS: AuthService, private toastr: ToastrService) { }
+    ClaimerService, private authS: AuthService, private toastr: ToastrService,
+    public loader: LoaderService) { }
 
   ngOnInit(): void {
+    this.loader.isLoading.next(true);
     this.claimerService.getClaimant(this.authS.currentUserId())
-    .subscribe(doc => this.user = doc.data());
+    .subscribe(doc => {
+      this.user = doc.data()
+      this.loader.isLoading.next(false);
+    });
   }
 
   updateForm = this.fb.group({
     firstname: ['', [Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
     lastname: ['', [Validators.minLength(3), Validators.pattern('[a-zA-Z ]*')]],
-    phoneNumber: ['', Validators.pattern('((0[6-8]))[0-9]{8}|((\\+27))[6-8][0-9]{8}')],//have to add more
+    phoneNumber: ['', Validators.pattern('(((0[6-8]))([0-9]{8}))')],//((0[6-8]))[0-9]{8}|((\\+27))[6-8][0-9]{8}
   });
 
   get firstname() { return this.updateForm.get('firstname')}

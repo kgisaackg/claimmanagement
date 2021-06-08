@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getPendingClaims(){
-    console.log('----------------------------');
+    this.claimService.isLoading.next(true);
     this.claimService.getPendingClaims().subscribe(res =>{
       this.claims = res.map ( (document)=>{
         return {
@@ -49,6 +49,7 @@ export class DashboardComponent implements OnInit {
         }
       });
       console.log ("Data received >> ",this.claims);
+      this.claimService.isLoading.next(false);
     })
   }
 

@@ -4,6 +4,14 @@ import { BehaviorSubject } from 'rxjs';
 import { Claim } from "../types/claim";
 import { HttpClient, HttpErrorResponse} from  '@angular/common/http';
 
+import { HttpHeaders } from '@angular/common/http';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +25,7 @@ export class ClaimService {
 
   sendEmail(){
     const customerData = "Hello Isaac malebana";
-    return this.http.post(this.url, customerData);
+    return this.http.post(this.url, customerData,httpOptions);
   }
 
 

@@ -31,7 +31,14 @@ import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { FinalizedClaimsComponent } from './components/finalized-claims/finalized-claims.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 
-import { HttpClientModule} from  '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS} from  '@angular/common/http';
+import { InterceptorService } from './services/interceptor.service';
+import { AdminComponent } from './components/admin/admin.component';
+import { ClaimentDsComponent } from './components/claiment-ds/claiment-ds.component';
+import { PendingClaimsDsComponent } from './components/pending-claims-ds/pending-claims-ds.component';
+import { FinalisedClaimsDsComponent } from './components/finalised-claims-ds/finalised-claims-ds.component';
+import { StatsDsComponent } from './components/stats-ds/stats-ds.component';
+
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -58,7 +65,12 @@ const firebaseConfig = {
     HeaderComponent,
     EditClaimComponent,
     FinalizedClaimsComponent,
-    ManagerDashboardComponent
+    ManagerDashboardComponent,
+    AdminComponent,
+    ClaimentDsComponent,
+    PendingClaimsDsComponent,
+    FinalisedClaimsDsComponent,
+    StatsDsComponent
   ],
   imports: [
     BrowserModule,
@@ -70,10 +82,14 @@ const firebaseConfig = {
     ReactiveFormsModule,
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule, 
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 2500,
+      preventDuplicates: true
+    }),
     HttpClientModule
   ],
-  providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy},
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
