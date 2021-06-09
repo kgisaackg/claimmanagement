@@ -53,6 +53,7 @@ export class EditProfileComponent implements OnInit {
       this.updateForm.value.lastname = lname;
     }
 
+
     const user = {
       id: this.authS.currentUserId(),
       firstname: this.updateForm.value.firstname, 
@@ -60,7 +61,8 @@ export class EditProfileComponent implements OnInit {
       phoneNumber: this.updateForm.value.phoneNumber, 
       email: emailAddress
     }
-
+    console.log(user);
+    
     this.claimerService.updateClaimant(user);
     this.showSuccess();
   }

@@ -2,16 +2,16 @@
 <h1 class="py-3 text-center text-info">eClaims</h1>
 <h3 class="p2-3 text-center">Create an account</h3>
 <mdb-card class="mx-auto" style="color: #757575; max-width: 500px;">
-  <!--Loader-->
+
+  <mdb-card-body>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+          <!-- First name -->  <!--Loader-->
   <div *ngIf="loader.isLoading | async" class="d-flex justify-content-center loader">
     <div class="spinner-border text-info" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
   <!---/** Loader-->
-  <mdb-card-body>
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-          <!-- First name -->
         <div class="md-form mb-0">
           <mdb-icon fas icon="user" class="prefix"></mdb-icon>
             <input type="text"  formControlName="firstname" class="form-control" mdbInput>

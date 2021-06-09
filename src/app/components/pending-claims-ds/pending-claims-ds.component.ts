@@ -21,7 +21,7 @@ export class PendingClaimsDsComponent implements OnInit {
 
   getPendingClaims(){
     this.claimService.isLoading.next(true);
-    this.claimService.getPendingClaims().subscribe(res =>{
+    this.claimService.getAllPendingClaims().subscribe(res =>{
       this.claims = res.map ( (document)=>{
         return {
           id: document.payload.doc.id,

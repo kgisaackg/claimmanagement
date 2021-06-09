@@ -43,13 +43,13 @@ import { StatsDsComponent } from './components/stats-ds/stats-ds.component';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCSaFe25xHlvxstpA8Evs8CzIv85hn648k",
-  authDomain: "authentication-15cfc.firebaseapp.com",
-  projectId: "authentication-15cfc",
-  storageBucket: "authentication-15cfc.appspot.com",
-  messagingSenderId: "106161072750",
-  appId: "1:106161072750:web:c9cc5fa5694a5673cf547f",
-  measurementId: "G-MM6Q9BLRJX"
+  apiKey: "AIzaSyD8RCit8US0nBiO7qP4c2WOIwUIht-ylrE",
+  authDomain: "eclaim-21.firebaseapp.com",
+  projectId: "eclaim-21",
+  storageBucket: "eclaim-21.appspot.com",
+  messagingSenderId: "402158322494",
+  appId: "1:402158322494:web:38a1b75e4331233324226f",
+  measurementId: "G-6H20R2DNBS"
 };
 
 @NgModule({

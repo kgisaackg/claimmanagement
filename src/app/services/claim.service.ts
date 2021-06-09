@@ -33,10 +33,18 @@ export class ClaimService {
     return this.afs.collection('claims').snapshotChanges();
   }
 
+  //for specific user
   getPendingClaims(){
     return this.afs.collection('claims',
      ref => ref.where("status", "==", "pending")
      .where("claimantId", "==", localStorage.getItem('userId'))).snapshotChanges();
+  }
+
+  //for all user
+
+ getAllPendingClaims(){
+    return this.afs.collection('claims',
+     ref => ref.where("status", "==", "pending")).snapshotChanges();
   }
 
   getFinilisedClaims(){

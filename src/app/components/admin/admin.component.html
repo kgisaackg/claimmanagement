@@ -4,9 +4,11 @@
     <!-- Sidebar -->
     <div class="sidebar-fixed position-fixed navbar-dark bg-info">
 
-        <a class="logo-wrapper waves-effect">
+      <!-- <a class="logo-wrapper waves-effect">
            eClaims
         </a>
+      -->
+        <mdb-navbar-brand><a class="navbar-brand logo-wrapper" routerLink="../dsstats">eClaims</a></mdb-navbar-brand>
 
         <div class="list-group list-group-flush">
 
@@ -16,16 +18,16 @@
             </a>
             <a routerLink="../dsclaiment" routerLinkActive="active"
                 class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="table" class="mr-3"></mdb-icon>Claiment
+                <mdb-icon fas icon="users" class="mr-3"></mdb-icon>Claiment
             </a>
             <a routerLink="../dspendingclaims" routerLinkActive="active"
                 class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="sort-amount-down-alt" class="mr-3"></mdb-icon>Pending Claims
+                <mdb-icon fas icon="file-alt" class="mr-3"></mdb-icon>Pending Claims
             </a>
 
             <a routerLink="../dsfinalisedclaims" routerLinkActive="active"
                 class="list-group-item list-group-item-action waves-effect">
-                <mdb-icon fas icon="sort-amount-down-alt" class="mr-3"></mdb-icon>Finalised Claims
+                <mdb-icon fas icon="file-contract" class="mr-3"></mdb-icon>Finalised Claims
             </a>
         </div>
 
