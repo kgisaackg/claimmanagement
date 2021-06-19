@@ -12,7 +12,8 @@ export class PendingClaimsDsComponent implements OnInit {
   claims: any[];
   claim: Claim;
 
-
+  search: String;
+   
   constructor(public claimService: ClaimService) { }
 
   ngOnInit(): void {

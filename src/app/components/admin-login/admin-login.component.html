@@ -1,0 +1,45 @@
+<div id="about">
+    <div class="about">
+      <!--Loader-->
+   <div *ngIf="loader.isLoading | async" class="d-flex justify-content-center loader">
+     <div class="spinner-border text-info" role="status">
+       <span class="sr-only">Loading...</span>
+     </div>
+   </div>
+   <!---/** Loader-->
+     <div class="about-item">
+         <h1 class="text-center text-info">eClaims</h1>
+     <mdb-card style="color: #757575">
+         <mdb-card-body>
+             <h3 class="text-center">Admin Login</h3>
+             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                 
+                 <div class="md-form">
+                     <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
+                     <input mdbInput type="text" id="form2" class="form-control" 
+                         formControlName="emailAddress">
+                     <label for="form2">Email Address</label>
+                 </div>
+     
+                 <div class="md-form">
+                     <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+                     <input mdbInput type="password" id="form2" class="form-control" formControlName="password">
+                     <label for="form2">Password</label>
+                 </div>
+                
+     
+                 <button mdbBtn color="info" block="true" class="my-4 " type="submit" size="sm">Sign in</button>
+              </form>
+         </mdb-card-body>
+     </mdb-card>
+     </div>
+ 
+     </div>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 

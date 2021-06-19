@@ -1,39 +1,73 @@
-<table mdbTable> 
-    <thead>
-      <tr>
-        <th class="py-2 px-1">Title</th>
-        <th class="py-2 px-1">Date</th>
-        <th class="py-2 px-1">Message</th>
-        <th class="py-2 px-1">Action</th>
-      </tr>
-    </thead>
-    <tbody>
+
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark bg-info" [containerInside]="false">
+
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/dashboard">eClaims</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <ul class="navbar-nav ml-auto nav-flex-icons">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle" mdbWavesEffect>
+            <mdb-icon fas icon="user"></mdb-icon><span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+            <b class="dropdown-item b" disabled>Manager@gmail.com</b>
+            <a class="dropdown-item link-bg"  mdbWavesEffect (click)="logOut()">Logout</a>
+          </div>
+        </li>
+  
+      </ul>
+      <!-- Links -->
+  </links>
+  <!-- Collapsible content -->
+ </mdb-navbar> 
+
+ <div class="container mt-5">
+
+   
+    <h3 class="text-info">Manage Claims</h3>
+    <!--Spinner-->
+    <div *ngIf="loader.isLoading | async" class="d-flex justify-content-center loader">
+      <div class="spinner-border text-info" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- /** Spinner-->
+
+  
+    <div class="md-form mb-3">
+      <input type="text" [(ngModel)]="search" placeholder="Search using date or title" class="form-control" mdbInput>
+    </div>
+   
+  <table mdbTable> 
+   
+      <thead>
         <tr>
-          <td class="py-2 px-1">{{claim.title}</td>
-          <td class="py-2 px-1">{{claim.claimDate}</td>
-          <td class="py-2 px-1">{{claim.message}</td>
-          <td class="py-2 px-1"><mdb-icon fas class="btn-click green-text" icon="edit" ></mdb-icon></td>
-          <td class="py-2 px-1">
-            <select class="">
-                <option *ngFor="let action of actions" [ngValue]="action">
-                  {{ action }}
-                </option>
-              </select>
-          </td>
+          <th class="py-2 px-1">Title</th>
+          <th class="py-2 px-1">Date</th>
+          <th class="py-2 px-1">Message</th>
+          <th class="py-2 px-1">File</th>
+          <th class="py-2 px-1">Status</th>
         </tr>
-        <tr>
-            <td class="py-2 px-1">{{claim.title}</td>
-            <td class="py-2 px-1">{{claim.claimDate}</td>
-            <td class="py-2 px-1">{{claim.message}</td>
-            <td class="py-2 px-1"><mdb-icon fas class="btn-click green-text" icon="edit" ></mdb-icon></td>
-            <td class="py-2 px-1">
-              <select class="browser-default custom-select">
-                  <option *ngFor="let action of actions" [ngValue]="action">
-                    {{ action }}
-                  </option>
-                </select>
-            </td>
-          </tr>
-    </tbody>
-  </table>
-  <!-- /** Table-->
+      </thead>
+      <tbody>
+       <!--<tr *ngFor="let claim of claims | filter:search">-->
+         <tr *ngFor="let claim of claims | filter:search">
+         <td class="py-2 px-1">{{claim.title}}</td>
+         <td class="py-2 px-1">{{claim.claimDate}}</td>
+         <td class="py-2 px-1">{{claim.message}}</td>
+         <td class="py-2 px-1"><a href="{{claim.claimDoc}}" target="_blank">view</a></td>
+         <td class="py-0 px-1">
+          <select class="browser-default custom-select" #category>
+              <option *ngFor="let action of actions" [ngValue]="action">
+                {{ action }}
+              </option>
+            </select>
+            <button mdbBtn (click)="save(category.value, claim)" color="info"  class="ml-2" size="sm">Save</button>
+        </td>
+      
+       </tr>
+      </tbody>
+      </table>
+  </div>

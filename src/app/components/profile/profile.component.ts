@@ -26,23 +26,28 @@ export class ProfileComponent implements OnInit {
     this.claimerService.getClaimant(this.authS.currentUserId())
     .subscribe(doc => {
       this.user = doc.data()
-      this.loader.isLoading.next(false)}
-    );
+      this.loader.isLoading.next(false)
+    });
   }
+
   edit(){
     this.router.navigate(['/editprofile'])
   }
 
   logOut(){
-    this.authS.logout();
+    this.authS.logout("user");
   }
 
   deleteAccount(){
     console.log("Delete has been called")
-    this.claimerService.deleteClaimant(this.authS.currentUserId());
-    this.authS.deleteUser();
-    localStorage.clear();
-    this.router.navigate(['/login'])
+    this.loader.isLoading.next(true);
+    this.claimerService.deleteClaimant(this.authS.currentUserId())
+    .then(() => {
+      this.authS.deleteUser();
+      localStorage.clear();
+      this.router.navigate(['/login']);
+      this.loader.isLoading.next(false)
+    });
   }
 
 }

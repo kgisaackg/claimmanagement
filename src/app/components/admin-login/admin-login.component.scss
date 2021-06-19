@@ -1,0 +1,32 @@
+*{box-sizing: border-box;}
+
+#about{
+    min-height: 100vh;
+    background-color: #81F0A3;
+    background-image: linear-gradient(rgba(34, 35, 41, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/image/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-claim{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.about{
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+}
+
+.loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 88;
+}

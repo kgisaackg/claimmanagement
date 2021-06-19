@@ -2,6 +2,17 @@ tr:nth-child(even) {
     background-color: rgb(223, 223, 252);
 }
 
+th{
+    font-weight: bold;
+}
+
 .btn-click:hover{
     cursor: pointer;
+}
+
+.loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
 }

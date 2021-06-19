@@ -17,39 +17,60 @@ const httpOptions = {
 })
 export class ClaimService {
 
-  url = "https://formspree.io/f/mvodajbv";
+  url = "https://eclaimapi.herokuapp.com/email";
+  formSpree = "https://formspree.io/f/mvodajbv";
 
   public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
-  sendEmail(){
+  postEmail(smessage: string){
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'my-auth-token'
+      })
+    };
+
+   
+    return this.http.post(this.formSpree, { email: "isaackagiso7@gmail.com",
+    message: smessage}, httpOptions);
+    
+  }
+
+  sendEmail(claim: Claim){
+    console.log("This has been sent")
     const customerData = "Hello Isaac malebana";
-    return this.http.post(this.url, customerData,httpOptions);
+    return this.http.post(this.url, customerData);
   }
 
 
   getClaims() {
-    return this.afs.collection('claims').snapshotChanges();
+    return this.afs.collection('claim').snapshotChanges();
   }
 
   //for specific user
   getPendingClaims(){
-    return this.afs.collection('claims',
-     ref => ref.where("status", "==", "pending")
+    return this.afs.collection('claim',
+     ref => ref.where("status", "==", "Pending")
      .where("claimantId", "==", localStorage.getItem('userId'))).snapshotChanges();
   }
 
   //for all user
+  getAllPendingClaims(){
+    return this.afs.collection('claim',
+     ref => ref.where("status", "==", "Pending")).snapshotChanges();
+  }
 
- getAllPendingClaims(){
-    return this.afs.collection('claims',
-     ref => ref.where("status", "==", "pending")).snapshotChanges();
+  getAllFinilisedClaims(){
+    return this.afs.collection('claim',
+     ref => ref.where("status", "!=", "Pending")).snapshotChanges();
   }
 
   getFinilisedClaims(){
-    return this.afs.collection('claims',
-     ref => ref.where("status", "!=", "pending")
+    return this.afs.collection('claim',
+     ref => ref.where("status", "!=", "Pending")
      .where("claimantId", "==", localStorage.getItem('userId'))).snapshotChanges();
   }
 
@@ -58,18 +79,22 @@ export class ClaimService {
   }
 
   createClaim(claim: Claim){
+    console.log("Creating a claim now ")
     delete claim.id;
-    return this.afs.collection('claims').add(claim);
+    return this.afs.collection('claim').add(claim).then(() => {
+      console.log("The message has been seent");
+      this.postEmail(claim.message).subscribe(d => console.log(d), e => console.log(e));
+    })
   }
 
   updateClaim(claim: Claim){
     console.log(claim);
     const id = claim.id;
     delete claim.id;
-    this.afs.doc('claims/' + id).update(claim);
+    return this.afs.doc('claim/' + id).update(claim);
   }
 
   deleteClaim(claimId: string){
-    this.afs.doc('claims/' + claimId).delete();
+    return this.afs.doc('claim/' + claimId).delete();
   }
 }

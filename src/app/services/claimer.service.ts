@@ -13,29 +13,28 @@ export class ClaimerService {
   constructor(private afs: AngularFirestore, private loaderService: LoaderService) { }
 
   getClaimant(claimantId: string){
-    return this.afs.collection('users').doc(claimantId).get();
+    return this.afs.collection('claiment').doc(claimantId).get();
   }
 
   getClaiments() {
-    return this.afs.collection('users').snapshotChanges();
+    return this.afs.collection('claiment').snapshotChanges();
   }
 
   createClaimant(claimant: any){
-    return this.afs.collection('users').add(claimant);
+    return this.afs.collection('claiment').add(claimant);
   }
 
   updateClaimant(Claimant: any){
     this.loaderService.isLoading.next(true);
-    console.log(Claimant);
     const ClaimantId =  Claimant.id
     delete Claimant.id;
 
-    this.afs.doc('users/' + ClaimantId).update(Claimant)
+    return this.afs.doc('claiment/' + ClaimantId).update(Claimant)
     .then(() => this.loaderService.isLoading.next(false));
   }
 
   deleteClaimant(ClaimantId: string){
-    this.afs.doc('users/' + ClaimantId).delete()
+    return this.afs.doc('claiment/' + ClaimantId).delete()
     .then();
   }
 

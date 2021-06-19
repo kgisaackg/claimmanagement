@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://eclaimapi.herokuapp.com/email",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

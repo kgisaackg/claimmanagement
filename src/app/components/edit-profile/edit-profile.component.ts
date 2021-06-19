@@ -41,6 +41,8 @@ export class EditProfileComponent implements OnInit {
 
   onUpdate(fname: string, lname: string, phone: string, emailAddress: string){
 
+    this.loader.isLoading.next(true);
+
     if(this.updateForm.value.firstname == ""){
       this.updateForm.value.firstname = fname;
     }
@@ -63,8 +65,10 @@ export class EditProfileComponent implements OnInit {
     }
     console.log(user);
     
-    this.claimerService.updateClaimant(user);
-    this.showSuccess();
+    this.claimerService.updateClaimant(user).then(() =>{
+      this.loader.isLoading.next(false);
+      this.showSuccess();
+    })
   }
 
   showSuccess() {

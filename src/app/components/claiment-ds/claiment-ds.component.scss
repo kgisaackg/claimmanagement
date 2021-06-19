@@ -3,8 +3,20 @@
     margin: 10px auto;
     left: 8%;
     border: none;
+    box-shadow: none;
+}
+
+.loader{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 99;
 }
 
 tr:nth-child(even) {
     background-color: rgb(223, 223, 252);
+}
+
+th{
+    font-weight: bold;
 }

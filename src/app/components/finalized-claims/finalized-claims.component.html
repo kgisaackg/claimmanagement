@@ -1,13 +1,22 @@
 <app-header></app-header>
 <div class="container mt-5">
+   <!--Spinner *ngIf="loader.isLoading | async"-->
+   <div *ngIf="loader.isLoading | async" class="d-flex justify-content-center loader">
+    <div class="spinner-border text-info" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  <!-- /** Spinner-->
+  <h5 class="mb-2">Finalised claims</h5>
     <div class="table-responsive">
 
         <table mdbTable> 
             <thead>
-              <tr>
+              <tr >
                 <th class="py-2 px-1">Title</th>
                 <th class="py-2 px-1">Date</th>
                 <th class="py-2 px-1">Message</th>
+                <th class="py-2 px-1">File</th>
                 <th class="py-2 px-1">Status</th>
               </tr>
             </thead>
@@ -16,6 +25,7 @@
                   <td class="py-2 px-1">{{claim.title}}</td>
                   <td class="py-2 px-1">{{claim.claimDate}}</td>
                   <td class="py-2 px-1">{{claim.message}}</td>
+                  <td class="py-2 px-1"><a href="{{claim.claimDoc}}" target="_blank">view</a></td>
                   <td class="py-2 px-1">{{claim.status}}</td>
                 </tr>
             </tbody>

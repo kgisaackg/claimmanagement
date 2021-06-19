@@ -12,9 +12,12 @@ export class StatsDsComponent implements OnInit {
   constructor(private claimerService: ClaimerService, private claimSerive: ClaimService) { }
 
   numUsers: number;
+  numPendingClaims: number;
+  numFinilisedClaims: number;
   ngOnInit(): void {
     this.claimerService.getClaiments().subscribe(v => this.numUsers =  v.length);
-   
+    this.claimSerive.getAllPendingClaims().subscribe( data => this.numPendingClaims = data.length);
+    this.claimSerive.getAllFinilisedClaims().subscribe(data => this.numFinilisedClaims = data.length)
   }
 
    //Charts 

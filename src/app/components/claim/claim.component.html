@@ -1,6 +1,11 @@
 <mdb-card style="color: #757575;">
     <mdb-card-body>
         <h5>Write us a claim</h5>
+        <div *ngIf="loader.isLoading | async" class="d-flex justify-content-center loader">
+          <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
         <form [formGroup]="claimForm" (ngSubmit)="submitClaim()">
             <!-- First name -->
             <div class="form-row">

@@ -25,7 +25,7 @@ export class AuthService {
         //this.userState = user.delete;
         let userAcc = afAuth.currentUser;
         
-        localStorage.setItem('userId', user.uid);
+       // localStorage.setItem('userId', user.uid);
       } else {
         localStorage.setItem('user', "null");
       }
@@ -43,23 +43,32 @@ export class AuthService {
   }
 
   login(email: string, password: string, role: string) {
-  
     this.loaderService.isLoading.next(true);
 
     this.afAuth.signInWithEmailAndPassword(email, password)
     .then((value:any)  => {
-      if(role == "user"){
-        localStorage.setItem('userId', value.user.X.X);
-        this.router.navigateByUrl('/dashboard');
-      }else{
+
+      //the below is a hack it has to be handled propery
+      if(role == "manager" && email == "manager@gmail.com"){
         localStorage.setItem('managerId', value.user.X.X);
         this.router.navigateByUrl('/manager');
+
+      }else if(role == "user" && (email != "manager@gmail.com") && (email != "admin@gmail.com")){
+        localStorage.setItem('userId', value.user.X.X);
+        this.router.navigateByUrl('/dashboard');
+        
+      }else if(role == "admin" && email == "admin@gmail.com"){
+        localStorage.setItem('adminId', value.user.X.X);
+        this.router.navigateByUrl('/dsstats');
+      }else{
+
+        alert("There is no user record corresponding to this identifier. The user may have been deleted. A")
       }
+
       this.loaderService.isLoading.next(false);
     })
     .catch((err:any) => {
       this.loaderService.isLoading.next(false);
-      console.log('Something went wrong: ', err.message);
       this.isError.next(true);
       this.msg.next(err.message)
       alert(err.message);
@@ -67,9 +76,14 @@ export class AuthService {
     });
   }
 
-  logout() {
+  logout(user: string) {
     this.afAuth.signOut();
-    localStorage.removeItem("userId");
+    if(user == "user")
+      localStorage.removeItem("userId");
+    else if(user == "admin" )
+      localStorage.removeItem("adminId");
+    else
+      localStorage.removeItem("managerId");
   }
   
   emailSignup(firstname: string, lastname: string, phoneNumber: string,
@@ -88,15 +102,12 @@ export class AuthService {
      }
      
      this.registerUser(user);
-      console.log(value.user.X.X);
-      console.log(value.user.uid);
       this.loaderService.isLoading.next(false);
       localStorage.setItem('userId', value.user.X.X);
       this.router.navigateByUrl('/dashboard');
     })
     .catch(error => {
       this.loaderService.isLoading.next(false);
-      console.log('Something went wrong: ', error);
       alert(error.message);
     });
 
@@ -105,7 +116,7 @@ export class AuthService {
   
 
   registerUser(user: any){
-    const userRef: AngularFirestoreDocument = this.afs.doc(`users/${user.uid}`);
+    const userRef: AngularFirestoreDocument = this.afs.doc(`claiment/${user.uid}`);
 
     return userRef.set(user, {
       merge: true
@@ -114,7 +125,7 @@ export class AuthService {
 
 
   getUsers() { 
-    return this.afs.collection("users").snapshotChanges();
+    return this.afs.collection("claiment").snapshotChanges();
   }
 
 }

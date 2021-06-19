@@ -21,20 +21,23 @@
         </div>
         /** end of for searching-->
 
+      
+
+        <table mdbTable *ngIf="!showClaim"> 
         <!--Spinner-->
-        <div *ngIf="claimService.isLoading | async" class="d-flex justify-content-center">
+        <div *ngIf="claimService.isLoading | async" class="d-flex justify-content-center loader">
           <div class="spinner-border text-info" role="status">
             <span class="sr-only">Loading...</span>
           </div>
         </div>
         <!-- /** Spinner-->
-
-        <table mdbTable *ngIf="!showClaim"> 
         <thead>
           <tr>
             <th class="py-2 px-1">Title</th>
             <th class="py-2 px-1">Date</th>
             <th class="py-2 px-1">Message</th>
+            <th class="py-2 px-3">File</th>
+           
           </tr>
         </thead>
         <tbody>
@@ -42,10 +45,9 @@
               <td class="py-2 px-1">{{claim.title}}</td>
               <td class="py-2 px-1">{{claim.claimDate}}</td>
               <td class="py-2 px-1">{{claim.message}}</td>
-              <!--
-              <td class="py-2 px-1"><mdb-icon fas class="btn-click green-text" icon="edit" (click)="editClaim(claim)"></mdb-icon></td>
-              -->
-              <td class="py-2 px-1"><mdb-icon fas class="btn-click red-text" icon="trash" (click)="frame.show()"></mdb-icon></td>
+              <td class="py-2 px-3"><a href="{{claim.claimDoc}}" target="_blank">view</a></td>
+              <td class="py-2 px-2"><mdb-icon fas class="btn-click green-text" icon="edit" (click)="editClaim(claim)"></mdb-icon></td>
+              <td class="py-2 px-2"><mdb-icon fas class="btn-click red-text" icon="trash" (click)="frame.show()"></mdb-icon></td>
             <!--Pop up to verify deleting-->
               <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog"
                   aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,10 +113,19 @@
                   </div>
                 </div>
               </div>
+
+              <!--custom upload file-->
+              <p></p>
+            <div>
+              <label>Update document <a href="{{updateClaim.claimDoc}}" target="_blank">(view old document)</a></label><br />
+              <input type="file" (change)="upload($event)" accept=".png, .jpg, .pdf" 
+                accept="image/*" class="upload" >
+            </div>
+            <!-- /**custom upload file-->
   
-              <div class="md-form mt-0">
+              <div class="md-form mt-2">
                   <textarea type="text" class="form-control md-textarea"
-                    mdbInput formControlName="message" placeholder="{{updateClaim.message}}"></textarea>
+                    mdbInput placeholder="{{updateClaim.message}}"  formControlName="message" ></textarea>
                     <label>Message</label>
               </div>
               <button mdbBtn color="info" block="true" class="my-3" type="submit" size="sm">Send Claim</button>

@@ -7,6 +7,7 @@ import { Claim } from 'src/app/types/claim';
 import { ToastrService } from 'ngx-toastr';
 
 import {AngularFireStorage} from '@angular/fire/storage'
+import { LoaderService } from 'src/app/services/loader.service';
 
 @Component({
   selector: 'app-claim',
@@ -17,7 +18,7 @@ export class ClaimComponent implements OnInit {
 
   claim: Claim;
 
-  constructor(private fb: FormBuilder, private cs: ClaimService, private as: AuthService,
+  constructor(private fb: FormBuilder, private cs: ClaimService, private as: AuthService, public loader: LoaderService,
      private datePipe: DatePipe, private toastr: ToastrService, private afStorage: AngularFireStorage) { }
 
   ngOnInit(): void {
@@ -33,64 +34,54 @@ export class ClaimComponent implements OnInit {
 
   today = this.datePipe.transform(Date.now(),"dd-MMMM-YYYY");
 
-
   //for file upload 
   filePath:String
   upload(event) {    
     this.filePath = event.target.files[0]
   }
 
-  urlPath = "uknown";
-  uploadImage(){
-  
-    //urlPath  = '/images'+Math.random()+this.filePath, this.filePath;
-    this.urlPath  = '/pdf'+Math.random()+this.filePath;
-    /*this.afStorage.upload(this.urlPath, this.filePath)
-    .then(f => console.log(f));j*/
-    this.uploadFile();
-  }
-
    //method to upload file at firebase storage
-    url = null;
-   async uploadFile() {
-    
-      const filePath = this.urlPath;    //path at which image will be stored in the firebase storage
-      const snap = await this.afStorage.upload(filePath, this.filePath);    //upload task
-      console.log(snap);
-      this.getUrl(snap);
-    
+  url = null;
+
+  async uploadFile() {
+    const fileName = '/pdf' + Math.random()+this.filePath;
+    const snap = await this.afStorage.upload(fileName, this.filePath);
+    this.getUrl(snap);
   }
 
   //method to retrieve download url
-  private async getUrl(snap: any) {
-    const url = await snap.ref.getDownloadURL();
-    this.url = url;  //store the URL
-    console.log(this.url);
+  async getUrl(snap: any) {
+    this.url = await snap.ref.getDownloadURL()
+    this.claim.claimDoc = this.url;
+    this.cs.createClaim(this.claim);
+    console.log(this.claim);
   }
   
-
   submitClaim(){
     
-    this.uploadImage();
-    this.claim ={
+    //this.uploadImage();
+    this.loader.isLoading.next(true);
+    this.claim = {
       id: null,
       claimantId: this.as.currentUserId(),
       claimDate: this.today,
       title: this.claimForm.value.title,
       message: this.claimForm.value.message,
-      status: "pending"
+      status: "Pending",
+      claimDoc: ""
     }
 
-    this.cs.createClaim(this.claim);
-    //this.cs.sendEmail()
+    this.uploadFile().then(() => {
+      this.loader.isLoading.next(false);
+      this.claimForm.reset();
+      this.toastr.success('Claim has been sent');
+    })
+  
+    /*this.cs.createClaim(this.claim).then(() => {
+      
+    });*/
 
-    this.showSuccess();
-    this.claimForm.reset();
     
-  }
-
-  showSuccess() {
-    this.toastr.success('Claim has been sent');
   }
 
 }

@@ -5,4 +5,5 @@ export class Claim{
     title: string;
     message: string;
     status: string;
+    claimDoc: string;
 }

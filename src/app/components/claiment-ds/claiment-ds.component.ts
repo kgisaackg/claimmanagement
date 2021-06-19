@@ -11,6 +11,7 @@ export class ClaimentDsComponent implements OnInit {
 
   users: any[];
   
+  search: String;
 
   constructor(public claimService: ClaimService, private claimerService:
     ClaimerService) { }

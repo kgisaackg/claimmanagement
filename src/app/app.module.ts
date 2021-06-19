@@ -26,7 +26,6 @@ import {DatePipe} from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ToastrModule } from 'ngx-toastr';
-import { EditClaimComponent } from './components/edit-claim/edit-claim.component';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import { FinalizedClaimsComponent } from './components/finalized-claims/finalized-claims.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
@@ -38,19 +37,21 @@ import { ClaimentDsComponent } from './components/claiment-ds/claiment-ds.compon
 import { PendingClaimsDsComponent } from './components/pending-claims-ds/pending-claims-ds.component';
 import { FinalisedClaimsDsComponent } from './components/finalised-claims-ds/finalised-claims-ds.component';
 import { StatsDsComponent } from './components/stats-ds/stats-ds.component';
-
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyD8RCit8US0nBiO7qP4c2WOIwUIht-ylrE",
-  authDomain: "eclaim-21.firebaseapp.com",
-  projectId: "eclaim-21",
-  storageBucket: "eclaim-21.appspot.com",
-  messagingSenderId: "402158322494",
-  appId: "1:402158322494:web:38a1b75e4331233324226f",
-  measurementId: "G-6H20R2DNBS"
+  apiKey: "AIzaSyDTxR1qEkn6qOvqiRZbhnHZbRB-XSzBxsc",
+  authDomain: "eclaim-70eeb.firebaseapp.com",
+  projectId: "eclaim-70eeb",
+  storageBucket: "eclaim-70eeb.appspot.com",
+  messagingSenderId: "403851855149",
+  appId: "1:403851855149:web:c5790f359faf582cfcffa4",
+  measurementId: "G-J61LRVDZFB"
 };
+
 
 @NgModule({
   declarations: [
@@ -63,14 +64,14 @@ const firebaseConfig = {
     ClaimComponent,
     PageNotFoundComponent,
     HeaderComponent,
-    EditClaimComponent,
     FinalizedClaimsComponent,
     ManagerDashboardComponent,
     AdminComponent,
     ClaimentDsComponent,
     PendingClaimsDsComponent,
     FinalisedClaimsDsComponent,
-    StatsDsComponent
+    StatsDsComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -83,10 +84,11 @@ const firebaseConfig = {
     MDBBootstrapModule.forRoot(),
     BrowserAnimationsModule, 
     ToastrModule.forRoot({
-      timeOut: 2500,
+      timeOut: 1500,
       preventDuplicates: true
     }),
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule
   ],
   providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
