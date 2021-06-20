@@ -11,7 +11,7 @@ th{
 }
 
 .custom-select{
-    max-width: 140px;
+    max-width: 120px;
     max-height: 50px;
 }
 
@@ -27,4 +27,8 @@ th{
     top: 50%;
     left: 50%;
     z-index: 99;
+}
+
+.main-select{
+    white-space: nowrap;
 }

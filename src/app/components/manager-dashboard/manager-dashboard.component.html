@@ -58,13 +58,13 @@
          <td class="py-2 px-1">{{claim.claimDate}}</td>
          <td class="py-2 px-1">{{claim.message}}</td>
          <td class="py-2 px-1"><a href="{{claim.claimDoc}}" target="_blank">view</a></td>
-         <td class="py-0 px-1">
+         <td class="py-0 px-1 main-select">
           <select class="browser-default custom-select" #category>
               <option *ngFor="let action of actions" [ngValue]="action">
                 {{ action }}
               </option>
             </select>
-            <button mdbBtn (click)="save(category.value, claim)" color="info"  class="ml-2" size="sm">Save</button>
+            <button mdbBtn (click)="save(category.value, claim)" color="info"  class="ml-2 px-2" size="sm">Save</button>
         </td>
       
        </tr>

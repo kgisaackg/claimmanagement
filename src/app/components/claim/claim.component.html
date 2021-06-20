@@ -24,8 +24,8 @@
             <!--custom upload file-->
             <div>
               <label>Add document</label><br />
-              <input type="file" (change)="upload($event)" accept=".png,.jpg, .pdf" 
-                accept="image/*" class="upload" formControlName="validationImage">
+              <input type="file" (change)="upload($event)" accept=".pdf" 
+                class="upload" formControlName="validationImage">
             </div>
             <div *ngIf="validationImage?.invalid && (validationImage?.dirty || 
               validationImage?.touched)" class="text-danger">
