@@ -86,7 +86,13 @@
     
   <mdb-card style="color: #757575;" *ngIf="this.showContent == 2 && !showClaim">
     <mdb-card-body>
-         
+          <!--Spinner-->
+        <div *ngIf="claimService.isLoading | async" class="d-flex justify-content-center loader">
+          <div class="spinner-border text-info" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+        <!-- /** Spinner-->
 
           <div class="d-flex justify-content-between align-items-center">
             <h5>Edit a claim</h5>
@@ -118,8 +124,7 @@
               <p></p>
             <div>
               <label>Update document <a href="{{updateClaim.claimDoc}}" target="_blank">(view old document)</a></label><br />
-              <input type="file" (change)="upload($event)" accept=".png, .jpg, .pdf" 
-                accept="image/*" class="upload" >
+              <input type="file" (change)="upload($event)" accept=".pdf" class="upload" >
             </div>
             <!-- /**custom upload file-->
   

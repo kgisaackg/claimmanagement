@@ -24,7 +24,7 @@ export class ClaimService {
 
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
-  postEmail(smessage: string){
+  postEmail(smessage: Claim){
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -33,9 +33,10 @@ export class ClaimService {
       })
     };
 
+    let theMessage = smessage;
    
     return this.http.post(this.formSpree, { email: "isaackagiso7@gmail.com",
-    message: smessage}, httpOptions);
+    message: theMessage}, httpOptions);
     
   }
 
@@ -83,7 +84,7 @@ export class ClaimService {
     delete claim.id;
     return this.afs.collection('claim').add(claim).then(() => {
       console.log("The message has been seent");
-      this.postEmail(claim.message).subscribe(d => console.log(d), e => console.log(e));
+      this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
     })
   }
 

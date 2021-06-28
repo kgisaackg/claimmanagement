@@ -31,7 +31,6 @@ import { FinalizedClaimsComponent } from './components/finalized-claims/finalize
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 
 import { HttpClientModule, HTTP_INTERCEPTORS} from  '@angular/common/http';
-import { InterceptorService } from './services/interceptor.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { ClaimentDsComponent } from './components/claiment-ds/claiment-ds.component';
 import { PendingClaimsDsComponent } from './components/pending-claims-ds/pending-claims-ds.component';
@@ -41,15 +40,15 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//Client for eclaim-21
 const firebaseConfig = {
-  apiKey: "AIzaSyDTxR1qEkn6qOvqiRZbhnHZbRB-XSzBxsc",
-  authDomain: "eclaim-70eeb.firebaseapp.com",
-  projectId: "eclaim-70eeb",
-  storageBucket: "eclaim-70eeb.appspot.com",
-  messagingSenderId: "403851855149",
-  appId: "1:403851855149:web:c5790f359faf582cfcffa4",
-  measurementId: "G-J61LRVDZFB"
+  apiKey: "AIzaSyD8RCit8US0nBiO7qP4c2WOIwUIht-ylrE",
+  authDomain: "eclaim-21.firebaseapp.com",
+  projectId: "eclaim-21",
+  storageBucket: "eclaim-21.appspot.com",
+  messagingSenderId: "402158322494",
+  appId: "1:402158322494:web:38a1b75e4331233324226f",
+  measurementId: "G-6H20R2DNBS"
 };
 
 
@@ -90,8 +89,7 @@ const firebaseConfig = {
     HttpClientModule,
     Ng2SearchPipeModule
   ],
-  providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy},
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true }],
+  providers: [DatePipe, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

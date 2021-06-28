@@ -28,7 +28,7 @@ export class ManagerDashboardComponent implements OnInit {
   }
 
   getPendingClaims(){
-    this.claimService.isLoading.next(true);
+    this.loader.isLoading.next(true);
     this.claimService.getAllPendingClaims().subscribe(res =>{
       this.claims = res.map ( (document)=>{
         return {
@@ -37,7 +37,7 @@ export class ManagerDashboardComponent implements OnInit {
         }
       });
       console.log ("Data received >> ",this.claims);
-      this.claimService.isLoading.next(false);
+      this.loader.isLoading.next(false);
     })
   }
 

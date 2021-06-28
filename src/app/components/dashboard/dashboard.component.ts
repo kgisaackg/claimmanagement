@@ -78,9 +78,9 @@ export class DashboardComponent implements OnInit {
     //updated
     this.claimService.updateClaim(this.claim).then(() =>{
       this.toastr.success('Claim has been updated');
-      this.claimService.isLoading.next(true);
+      this.claimService.isLoading.next(false);
       this.claimForm.reset();
-      this.showContent = 1;
+      setTimeout(() => {this.showContent = 1;}, 1500);
     });
     //have to be updated with 
 
@@ -115,9 +115,9 @@ export class DashboardComponent implements OnInit {
     if(this.filePath == undefined){
       this.claimService.updateClaim(this.claim).then(() =>{
         this.toastr.success('Claim has been updated');
-        this.claimService.isLoading.next(true);
+        this.claimService.isLoading.next(false);
         this.claimForm.reset();
-        this.showContent = 1;
+        setTimeout(() => {this.showContent = 1;}, 1500);
       });
     }else{
       this.uploadFile();
