@@ -33,7 +33,8 @@ export class ClaimService {
       })
     };
 
-    let theMessage = smessage;
+    let theMessage = "Hello, \nAnother Claim \n\n" + smessage.title + "\n" 
+    + smessage.message + "\n\nDocument Link " + smessage.claimDoc;
    
     return this.http.post(this.formSpree, { email: "isaackagiso7@gmail.com",
     message: theMessage}, httpOptions);
@@ -84,7 +85,7 @@ export class ClaimService {
     delete claim.id;
     return this.afs.collection('claim').add(claim).then(() => {
       console.log("The message has been seent");
-      this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
+      //this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
     })
   }
 
