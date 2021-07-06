@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { ViewChild, ElementRef } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoaderService } from 'src/app/services/loader.service';
@@ -11,18 +12,22 @@ import { LoaderService } from 'src/app/services/loader.service';
 })
 export class LoginComponent implements OnInit {
 
-  errorMessage = false;
-
   loginForm = this.fb.group({
-    emailAddress: [''],
-    password: [''],
+    emailAddress: ['', [Validators.required, Validators.email]],
+    password: ['',  Validators.required],
     role: ['user']
   })
 
-  constructor(private fb: FormBuilder, private router: Router, public authService: AuthService, public loader: LoaderService) { }
+  constructor(private fb: FormBuilder, private router: Router, public authService: AuthService, 
+    public loader: LoaderService) { }
 
   ngOnInit(): void {
+   
   }
+
+  get emailAddress() { return this.loginForm.get('emailAddress')}
+
+  get password() { return this.loginForm.get('password')}
 
   onSubmit(){
     console.log(this.loginForm.value);

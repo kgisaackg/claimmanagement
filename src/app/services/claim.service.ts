@@ -17,8 +17,10 @@ const httpOptions = {
 })
 export class ClaimService {
 
-  url = "https://eclaimapi.herokuapp.com/email";
-  formSpree = "https://formspree.io/f/mvodajbv";
+  url = "http://localhost:5000/email";
+
+  //real one formSpree = "https://formspree.io/f/myylpnbl";
+  formSpree = "";
 
   public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -44,7 +46,7 @@ export class ClaimService {
   sendEmail(claim: Claim){
     console.log("This has been sent")
     const customerData = "Hello Isaac malebana";
-    return this.http.post(this.url, customerData);
+    return this.http.post(this.url, claim);
   }
 
 
@@ -83,10 +85,11 @@ export class ClaimService {
   createClaim(claim: Claim){
     console.log("Creating a claim now ")
     delete claim.id;
-    return this.afs.collection('claim').add(claim).then(() => {
+    /*return this.afs.collection('claim').add(claim).then(() => {
       console.log("The message has been seent");
       //this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
-    })
+    })*/
+    return this.sendEmail(claim).subscribe(d => console.log(d), e => console.log(e));
   }
 
   updateClaim(claim: Claim){

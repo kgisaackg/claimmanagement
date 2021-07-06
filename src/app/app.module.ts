@@ -38,6 +38,8 @@ import { FinalisedClaimsDsComponent } from './components/finalised-claims-ds/fin
 import { StatsDsComponent } from './components/stats-ds/stats-ds.component';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -68,7 +70,9 @@ const firebaseConfig = {
     PendingClaimsDsComponent,
     FinalisedClaimsDsComponent,
     StatsDsComponent,
-    AdminLoginComponent
+    AdminLoginComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

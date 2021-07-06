@@ -7,24 +7,38 @@
     </div>
   </div>
   <!---/** Loader-->
+    
+
+
     <div class="about-item">
-        <h1 class="text-center text-info">eClaims</h1>
+        <h1 class="text-center text-info">eClaims</h1>          
     <mdb-card style="color: #757575">
         <mdb-card-body>
             <h3 class="text-center">Login</h3>
+  
+
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 
-                <div class="md-form">
+                <div class="md-form mb-0">
                     <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
                     <input mdbInput type="text" id="form2" class="form-control" 
                         formControlName="emailAddress">
                     <label for="form2">Email Address</label>
                 </div>
+                <!--Validation-->
+                <div *ngIf="emailAddress?.invalid && (emailAddress?.dirty || emailAddress?.touched)" class="text-danger">
+                    <small  *ngIf="emailAddress?.errors?.required"> *Email address is required</small>
+                    <small  *ngIf="emailAddress?.errors?.email"> *Invalid email address</small>
+                </div>
     
-                <div class="md-form">
+                <div class="md-form mb-0">
                     <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
                     <input mdbInput type="password" id="form2" class="form-control" formControlName="password">
                     <label for="form2">Password</label>
+                </div>
+                 <!--validation-->
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+                    <small  *ngIf="password?.errors?.required"> *password is required</small>
                 </div>
     
                    
@@ -35,12 +49,15 @@
                     <input type="radio" name="role" formControlName="role" class="radio-size" value="manager" mdInput> Manager
                 </div>
           
+                <button mdbBtn color="info" block="true" class="my-4 " [disabled]='!loginForm.valid' type="submit" size="sm">Sign in</button>
             
                 <p class="text-center">Are you new to eClaims?
                     <a routerLink="/register" >Register</a>
                 </p>
     
-                <button mdbBtn color="info" block="true" class="my-4 " type="submit" size="sm">Sign in</button>
+                <p class="text-center">
+                    <a routerLink="/forgotpassword" >Forgot password</a>
+                </p>
              </form>
         </mdb-card-body>
     </mdb-card>

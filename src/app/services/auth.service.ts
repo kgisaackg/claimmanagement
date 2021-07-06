@@ -6,19 +6,18 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { LoginComponent } from '../components/login/login.component';
 import { BehaviorSubject } from 'rxjs';
 import { LoaderService } from './loader.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public isError: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public msg: BehaviorSubject<string> = new BehaviorSubject<string>("msg");
   public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   userState = null;
   constructor(public  afAuth:  AngularFireAuth, public  router:  Router,
-    private afs: AngularFirestore, private loaderService: LoaderService) { 
+    private afs: AngularFirestore, private loaderService: LoaderService,  private toastr: ToastrService) { 
 
     this.afAuth.authState.subscribe(user => {
       if (user){
@@ -61,18 +60,16 @@ export class AuthService {
         localStorage.setItem('adminId', value.user.X.X);
         this.router.navigateByUrl('/dsstats');
       }else{
-
-        alert("There is no user record corresponding to this identifier. The user may have been deleted. A")
+        this.toastr.error("There is no user record corresponding to this identifier."
+         + " The user may have been deleted."," ", {timeOut: 3000});
       }
 
       this.loaderService.isLoading.next(false);
     })
     .catch((err:any) => {
       this.loaderService.isLoading.next(false);
-      this.isError.next(true);
-      this.msg.next(err.message)
-      alert(err.message);
-     
+      
+      this.toastr.error(err.message," ", {timeOut: 3000});
     });
   }
 
@@ -108,12 +105,9 @@ export class AuthService {
     })
     .catch(error => {
       this.loaderService.isLoading.next(false);
-      alert(error.message);
+      this.toastr.error(error.message," ", {timeOut: 3000});
     });
-
   }
-
-  
 
   registerUser(user: any){
     const userRef: AngularFirestoreDocument = this.afs.doc(`claiment/${user.uid}`);
@@ -123,6 +117,28 @@ export class AuthService {
     });
   }
 
+  resetLink(email: any){
+    this.loaderService.isLoading.next(true);
+
+    this.afAuth.sendPasswordResetEmail(email).then(
+      () => {
+        this.toastr.error("Reset link has been sent to your email"," ", {timeOut: 3000});
+      },
+      err => {
+        this.toastr.error("Make sure email exist, and you have greate network connection",
+        " ", {timeOut: 3000});
+      }).then(() => this.loaderService.isLoading.next(false));
+  }
+
+  resetPassword(code: string, password: string){
+    this.loaderService.isLoading.next(true);
+    
+    this.afAuth.confirmPasswordReset(code, password)
+    .then(() => this.router.navigate(['login']))
+    .catch(err => {
+      this.toastr.error(err.message," ", {timeOut: 3000});
+    }).then(() => this.loaderService.isLoading.next(false));
+  }
 
   getUsers() { 
     return this.afs.collection("claiment").snapshotChanges();
