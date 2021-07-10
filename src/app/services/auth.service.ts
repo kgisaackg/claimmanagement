@@ -69,7 +69,7 @@ export class AuthService {
     .catch((err:any) => {
       this.loaderService.isLoading.next(false);
       
-      this.toastr.error(err.message," ", {timeOut: 3000});
+      this.toastr.error(err.deleteUmessage," ", {timeOut: 3000});
     });
   }
 
@@ -94,11 +94,12 @@ export class AuthService {
        firstname, 
        lastname,
        phoneNumber,
-       email,
-       uid: value.user.uid
+       email
+       //uid: value.user.uid
      }
-     
-     this.registerUser(user);
+     let id = value.user.uid
+
+     this.registerUser(user, id);
       this.loaderService.isLoading.next(false);
       localStorage.setItem('userId', value.user.X.X);
       this.router.navigateByUrl('/dashboard');
@@ -109,8 +110,8 @@ export class AuthService {
     });
   }
 
-  registerUser(user: any){
-    const userRef: AngularFirestoreDocument = this.afs.doc(`claiment/${user.uid}`);
+  registerUser(user: any, id){
+    const userRef: AngularFirestoreDocument = this.afs.doc(`claiment/${id}`);
 
     return userRef.set(user, {
       merge: true
@@ -122,7 +123,7 @@ export class AuthService {
 
     this.afAuth.sendPasswordResetEmail(email).then(
       () => {
-        this.toastr.error("Reset link has been sent to your email"," ", {timeOut: 3000});
+        this.toastr.success("Reset link has been sent to your email"," ", {timeOut: 3000});
       },
       err => {
         this.toastr.error("Make sure email exist, and you have greate network connection",

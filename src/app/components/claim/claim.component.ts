@@ -44,6 +44,7 @@ export class ClaimComponent implements OnInit {
   url = null;
 
   async uploadFile() {
+    console.log(" This is for upload file")
     const fileName = '/pdf' + Math.random()+this.filePath;
     const snap = await this.afStorage.upload(fileName, this.filePath);
     this.getUrl(snap);
@@ -51,6 +52,7 @@ export class ClaimComponent implements OnInit {
 
   //method to retrieve download url
   async getUrl(snap: any) {
+    console.log("This is in get urld")
     this.url = await snap.ref.getDownloadURL()
     this.claim.claimDoc = this.url;
     this.cs.createClaim(this.claim);
@@ -58,12 +60,13 @@ export class ClaimComponent implements OnInit {
   }
   
   submitClaim(){
-    
+    console.log("This has been submited")
     //this.uploadImage();
     this.loader.isLoading.next(true);
     this.claim = {
       id: null,
       claimantId: this.as.currentUserId(),
+      empId: "Km8PgcU3TzJFjdSOBDu5",
       claimDate: this.today,
       title: this.claimForm.value.title,
       message: this.claimForm.value.message,

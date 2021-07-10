@@ -90,21 +90,32 @@ export class DashboardComponent implements OnInit {
   editSpecifClaim(updateClaim: Claim){
 
     this.claimService.isLoading.next(true);
-
+    console.log(this.claimForm.value.title + "Old value: " + updateClaim.title +
+    "\n" + this.claimForm.value.message  + "Old value: " + updateClaim.message);
+    
+    
     //to change values of non updated inputs
-    if(this.claimForm.value.title == "" || this.claimForm.value.title == undefined){
+    console.log(this.claimForm.value.title )
+    console.log(updateClaim.title)
+    if((this.claimForm.value.title == "") || (this.claimForm.value.title == undefined)){
+      console.log("For upading claim title")
       this.claimForm.value.title = updateClaim.title;
     }
 
-    if(this.claimForm.value.messsage == "" || this.claimForm.value.messsage == undefined){
+
+    console.log(this.claimForm.value.message)
+    console.log(updateClaim.message)
+    if((this.claimForm.value.message == "") || (this.claimForm.value.message == null)){
+      console.log("For updating claim message")
       this.claimForm.value.message = updateClaim.message;
     }
 
-    console.log(this.claim);
+    console.log(this.claimForm.value.title + " \n" + this.claimForm.value.message);
 
     this.claim = {
       id: this.updateClaim.id,
       claimantId: this.as.currentUserId(),
+      empId: "Km8PgcU3TzJFjdSOBDu5",
       claimDate: this.updateClaim.claimDate,
       title: this.claimForm.value.title,
       message: this.claimForm.value.message,

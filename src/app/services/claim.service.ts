@@ -85,11 +85,11 @@ export class ClaimService {
   createClaim(claim: Claim){
     console.log("Creating a claim now ")
     delete claim.id;
-    /*return this.afs.collection('claim').add(claim).then(() => {
+    return this.afs.collection('claim').add(claim).then(() => {
       console.log("The message has been seent");
       //this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
-    })*/
-    return this.sendEmail(claim).subscribe(d => console.log(d), e => console.log(e));
+    })
+    //return this.sendEmail(claim).subscribe(d => console.log(d), e => console.log(e));
   }
 
   updateClaim(claim: Claim){
