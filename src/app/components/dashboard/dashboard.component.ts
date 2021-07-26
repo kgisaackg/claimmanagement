@@ -115,7 +115,7 @@ export class DashboardComponent implements OnInit {
     this.claim = {
       id: this.updateClaim.id,
       claimantId: this.as.currentUserId(),
-      empId: "Km8PgcU3TzJFjdSOBDu5",
+      empId: "gUb33T0Tev9pS8HOWsEh",
       claimDate: this.updateClaim.claimDate,
       title: this.claimForm.value.title,
       message: this.claimForm.value.message,

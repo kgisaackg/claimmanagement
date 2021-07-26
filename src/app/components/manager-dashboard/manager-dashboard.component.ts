@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { LoaderService } from 'src/app/services/loader.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-manager-dashboard',
@@ -20,7 +21,7 @@ export class ManagerDashboardComponent implements OnInit {
   search : string;
 
 
-  constructor(private router: Router, private claimService: ClaimService,
+  constructor(private router: Router, private claimService: ClaimService,private datePipe: DatePipe,
    private authS: AuthService, private toastr: ToastrService,  public loader: LoaderService) { }
 
   ngOnInit(): void {
@@ -41,9 +42,34 @@ export class ManagerDashboardComponent implements OnInit {
     })
   }
 
-  save(status: string, claim: Claim){
+  saves(status: string, claim: Claim){
     claim.status = status;
     this.claimService.updateClaim(claim);
+    console.log(status);
+    this.statusApproved();
+  }
+
+
+save(status: string, claim: Claim){
+    claim.status = status;
+    const theid = claim.id;
+    this.claimService.updateClaim(claim);
+
+    let futureDate = new Date();
+    futureDate.setDate(futureDate.getDate() + 10);
+    let payDate = this.datePipe.transform((futureDate),"dd-MMMM-YYYY");
+
+    if(status !== "Pending"){
+      payDate = (status === "Approved") ? payDate : "N/A";
+      const insurer = {
+          paymentMethod: "Electronic bank transfers",
+          payDate: payDate,
+          claimId: theid
+      }
+      this.claimService.createInsurer(insurer);
+      console.log(theid);
+    }
+
     console.log(status);
     this.statusApproved();
   }

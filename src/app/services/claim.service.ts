@@ -99,6 +99,13 @@ export class ClaimService {
     return this.afs.doc('claim/' + id).update(claim);
   }
 
+  createInsurer(insurer: any){
+    return this.afs.collection('insurer').add(insurer).then(() => {
+      console.log("Insurance message has been sent");
+      //this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
+    })
+  }
+
   deleteClaim(claimId: string){
     return this.afs.doc('claim/' + claimId).delete();
   }

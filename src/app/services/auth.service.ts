@@ -69,7 +69,7 @@ export class AuthService {
     .catch((err:any) => {
       this.loaderService.isLoading.next(false);
       
-      this.toastr.error(err.deleteUmessage," ", {timeOut: 3000});
+      this.toastr.error(err.message," ", {timeOut: 3000});
     });
   }
 
