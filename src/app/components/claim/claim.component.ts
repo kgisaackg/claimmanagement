@@ -79,12 +79,6 @@ export class ClaimComponent implements OnInit {
       this.claimForm.reset();
       this.toastr.success('Claim has been sent');
     })
-  
-    /*this.cs.createClaim(this.claim).then(() => {
-      
-    });*/
-
-    
   }
 
 }

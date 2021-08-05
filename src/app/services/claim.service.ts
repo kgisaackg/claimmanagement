@@ -19,14 +19,14 @@ export class ClaimService {
 
   url = "http://localhost:5000/email";
 
-  //real one formSpree = "https://formspree.io/f/myylpnbl";
-  formSpree = "";
+  formSpree = "https://formspree.io/f/myylpnbl";
+  //formSpree = ""; 
 
   public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private afs: AngularFirestore, private http: HttpClient) { }
 
-  postEmail(smessage: Claim){
+  postEmail(smessage: Claim, id: String, actionType: String){
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -35,9 +35,21 @@ export class ClaimService {
       })
     };
 
-    let theMessage = "Hello, \nAnother Claim \n\n" + smessage.title + "\n" 
-    + smessage.message + "\n\nDocument Link " + smessage.claimDoc;
-   
+    console.log("-----------Start---------------");
+
+    let theMessage = "Hello, \nClaim from eClaims\n\nDeleted\nId#: " + id;
+
+    if("Create" === actionType){
+      theMessage = "Hello, \nClaim from eClaims\n\nCreate\nId#: " + id +"\nTitle: " + smessage.title + "\nMessage: " 
+          + smessage.message + "\n\nDocument Link " + smessage.claimDoc;
+    }else if("Update" === actionType){
+      theMessage = "Hello, \nClaim from eClaims\n\nUpdate\nId#: " + id +"\nTitle: " + smessage.title + "\nMessage: " 
+          + smessage.message + "\n\nDocument Link " + smessage.claimDoc;
+    }
+    
+    console.log(theMessage);
+    console.log("---------------End-----------------")
+
     return this.http.post(this.formSpree, { email: "isaackagiso7@gmail.com",
     message: theMessage}, httpOptions);
     
@@ -48,7 +60,6 @@ export class ClaimService {
     const customerData = "Hello Isaac malebana";
     return this.http.post(this.url, claim);
   }
-
 
   getClaims() {
     return this.afs.collection('claim').snapshotChanges();
@@ -83,11 +94,11 @@ export class ClaimService {
   }
 
   createClaim(claim: Claim){
-    console.log("Creating a claim now ")
+    console.log("Creating a claim now--");
     delete claim.id;
-    return this.afs.collection('claim').add(claim).then(() => {
-      console.log("The message has been seent");
-      //this.postEmail(claim).subscribe(d => console.log(d), e => console.log(e));
+    return this.afs.collection('claim').add(claim).then((value: any) => {
+      console.log("The message has been sent On Create Claim");
+      this.postEmail(claim, value.id, "Create").subscribe(d => console.log(d), e => console.log(e));
     })
     //return this.sendEmail(claim).subscribe(d => console.log(d), e => console.log(e));
   }
@@ -96,7 +107,10 @@ export class ClaimService {
     console.log(claim);
     const id = claim.id;
     delete claim.id;
-    return this.afs.doc('claim/' + id).update(claim);
+    return this.afs.doc('claim/' + id).update(claim).then(() =>{
+      console.log("Inside update then");
+      this.postEmail(claim, id,"Update").subscribe(d => console.log(d), e => console.log(e));
+    });
   }
 
   createInsurer(insurer: any){
@@ -106,7 +120,16 @@ export class ClaimService {
     })
   }
 
+  getInsurer(claimId: string){
+    return this.afs.collection('insurer',
+    ref => ref.where("claimId", "==", claimId)).snapshotChanges();
+  }
+
   deleteClaim(claimId: string){
-    return this.afs.doc('claim/' + claimId).delete();
+    return this.afs.doc('claim/' + claimId).delete().then(() =>{
+      console.log("Inside delete then");
+      const claim = null;
+      this.postEmail(claim, claimId, "Delete").subscribe(d => console.log(d), e => console.log(e));
+    });
   }
 }

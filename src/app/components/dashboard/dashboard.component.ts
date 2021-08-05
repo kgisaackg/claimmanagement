@@ -93,7 +93,6 @@ export class DashboardComponent implements OnInit {
     console.log(this.claimForm.value.title + "Old value: " + updateClaim.title +
     "\n" + this.claimForm.value.message  + "Old value: " + updateClaim.message);
     
-    
     //to change values of non updated inputs
     console.log(this.claimForm.value.title )
     console.log(updateClaim.title)
@@ -101,7 +100,6 @@ export class DashboardComponent implements OnInit {
       console.log("For upading claim title")
       this.claimForm.value.title = updateClaim.title;
     }
-
 
     console.log(this.claimForm.value.message)
     console.log(updateClaim.message)

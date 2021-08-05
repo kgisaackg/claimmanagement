@@ -20,7 +20,6 @@ export class ManagerDashboardComponent implements OnInit {
 
   search : string;
 
-
   constructor(private router: Router, private claimService: ClaimService,private datePipe: DatePipe,
    private authS: AuthService, private toastr: ToastrService,  public loader: LoaderService) { }
 
@@ -48,7 +47,6 @@ export class ManagerDashboardComponent implements OnInit {
     console.log(status);
     this.statusApproved();
   }
-
 
 save(status: string, claim: Claim){
     claim.status = status;
