@@ -11,16 +11,15 @@
 
 
     <div class="about-item">
-        <h1 class="text-center text-info">eClaims</h1>          
-    <mdb-card style="color: #757575">
+        <h1 class="text-center text-white mb-4">EClaims</h1>          
+    <mdb-card  class="card">
         <mdb-card-body>
-            <h3 class="text-center">Login</h3>
+            <h3 >Sign In</h3>
   
 
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 
                 <div class="md-form mb-0">
-                    <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
                     <input mdbInput type="text" id="form2" class="form-control" 
                         formControlName="emailAddress">
                     <label for="form2">Email Address</label>
@@ -32,7 +31,7 @@
                 </div>
     
                 <div class="md-form mb-0">
-                    <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
+
                     <input mdbInput type="password" id="form2" class="form-control" formControlName="password">
                     <label for="form2">Password</label>
                 </div>
@@ -46,17 +45,17 @@
                  <div class="radioRow my-4">
                     <label>Role</label><br/>
                     <input type="radio" name="role" id="defaultChecked" formControlName="role" class="radio-size" value="user" checked mdInput> User
-                    <input type="radio" name="role" formControlName="role" class="radio-size" value="manager" mdInput> Manager
+                    <input type="radio" name="role" formControlName="role" class="ml-4 radio-size" value="manager" mdInput> Manager
                 </div>
           
-                <button mdbBtn color="info" block="true" class="my-4 " [disabled]='!loginForm.valid' type="submit" size="sm">Sign in</button>
+                <button  block="true" class="my-4 cust_btn py-2" [disabled]='!loginForm.valid' type="submit" size="sm">Sign in</button>
             
                 <p class="text-center">Are you new to eClaims?
-                    <a routerLink="/register" >Register</a>
+                    <a routerLink="/register" class="text-color">Sign Up</a>
                 </p>
     
-                <p class="text-center">
-                    <a routerLink="/forgotpassword" >Forgot password</a>
+                <p>
+                    <a routerLink="/forgotpassword" class="text-dark">Forgot password</a>
                 </p>
              </form>
         </mdb-card-body>

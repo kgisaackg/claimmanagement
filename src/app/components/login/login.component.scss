@@ -2,14 +2,27 @@
 
 #about{
     min-height: 100vh;
-    background-color: #81F0A3;
-    background-image: linear-gradient(rgba(34, 35, 41, 0.5), rgba(0, 0, 0, 0.5)), url("../../../assets/image/background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color: #DBAD94;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.text-color {
+    color: #DBAD94;
+}
+
+.card{
+    min-width: 400px;
+    border-radius: 20px;
+}
+
+.cust_btn{
+    color: #fff;
+    border: none;
+    width: 100%;
+    background-color: #DBAD94;
+    border-radius: 10px;
 }
 
 .about-claim{
