@@ -1,7 +1,6 @@
-.container-fluid {
+.containerfs {
   background-color: #dbad94;
   min-height: 100vh;
-  padding: 20px;
   display: flex;
   .container-fluid__main{
     margin: auto;
@@ -12,33 +11,4 @@
   position: fixed;
   top: 50%;
   left: 50%;
-}
-
-.card {
-  width: 400px;
-  border-radius: 20px;
-}
-
-.cust_btn {
-  color: #fff;
-  border: none;
-  width: 100%;
-  background-color: #dbad94;
-  border-radius: 10px;
-}
-
-@media only screen and (max-width: 600px) {
-  .card {
-    min-width: 100%;
-    border-radius: 20px;
-    margin: auto;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .card {
-    max-width: 330px;
-    border-radius: 20px;
-    margin: auto;
-  }
 }

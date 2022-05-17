@@ -8,27 +8,25 @@
    </div>
    <!---/** Loader-->
      <div class="about-item">
-         <h1 class="text-center text-info">eClaims</h1>
-     <mdb-card style="color: #757575">
+        <h1 class="py-3 text-center text-white font-weight-bold">EClaims</h1>
+     <mdb-card class="card">
          <mdb-card-body>
-             <h3 class="text-center">Admin Login</h3>
+             <h3>Admin Login</h3>
              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                  
                  <div class="md-form">
-                     <mdb-icon fas icon="envelope" class="prefix"></mdb-icon>
                      <input mdbInput type="text" id="form2" class="form-control" 
                          formControlName="emailAddress">
                      <label for="form2">Email Address</label>
                  </div>
      
                  <div class="md-form">
-                     <mdb-icon fas icon="lock" class="prefix"></mdb-icon>
                      <input mdbInput type="password" id="form2" class="form-control" formControlName="password">
                      <label for="form2">Password</label>
                  </div>
                 
      
-                 <button mdbBtn color="info" block="true" class="my-4 " type="submit" size="sm">Sign in</button>
+                 <button class="cust_btn my-4 py-2" type="submit">Sign in</button>
               </form>
          </mdb-card-body>
      </mdb-card>

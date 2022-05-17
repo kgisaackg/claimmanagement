@@ -1,17 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
-label{
-    color: #000 !important;
+label {
+  color: #000 !important;
 }
 
-input[type=text]:focus:not([readonly]) + label{
-    color: #000 !important;
+input[type="text"]:focus:not([readonly]) + label {
+  color: #000 !important;
 }
 
-input[type=text]:focus:not([readonly]) {
-    border-bottom: 1px solid rgb(0, 0, 0) !important;
-    box-shadow: 0 1px 0 0 rgb(0, 0, 0) !important; 
+input[type="text"]:focus:not([readonly]) {
+  border-bottom: 1px solid rgb(0, 0, 0) !important;
+  box-shadow: 0 1px 0 0 rgb(0, 0, 0) !important;
 }
 
 .text-color {
-    color: #DBAD94;
+  color: #dbad94;
+}
+
+a:hover {
+  color: #dbad94;
+}
+a {
+  color: #dbad94;
+}
+
+.cust_btn {
+  color: #fff;
+  border: none;
+  width: 100%;
+  background-color: #dbad94;
+  border-radius: 10px;
+}
+
+.card {
+  width: 400px;
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    min-width: 100%;
+    border-radius: 20px;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .card {
+    max-width: 330px;
+    border-radius: 20px;
+    margin: auto;
+  }
 }
