@@ -8,9 +8,6 @@
     justify-content: center;
 }
 
-.text-color {
-    color: #DBAD94;
-}
 
 .card{
     width: 400px;
@@ -65,7 +62,7 @@
   @media only screen and (max-width: 400px) {
 
     .card{ 
-        max-width: 300px;
+        max-width: 330px;
         border-radius: 20px;
         margin: auto;
     }
