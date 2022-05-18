@@ -40,6 +40,7 @@ import { AdminLoginComponent } from './components/admin-login/admin-login.compon
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { LandingComponent } from './components/landing/landing.component';
 
 //Client for eclaim-70eeb
 const firebaseConfig = {
@@ -72,7 +73,8 @@ const firebaseConfig = {
     StatsDsComponent,
     AdminLoginComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,

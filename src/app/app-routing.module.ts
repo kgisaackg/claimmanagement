@@ -9,6 +9,7 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 import { FinalisedClaimsDsComponent } from './components/finalised-claims-ds/finalised-claims-ds.component';
 import { FinalizedClaimsComponent } from './components/finalized-claims/finalized-claims.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LandingComponent } from './components/landing/landing.component';
 import { LoginComponent } from './components/login/login.component';
 import { ManagerDashboardComponent } from './components/manager-dashboard/manager-dashboard.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -22,7 +23,8 @@ import { CanAcitivateManagerGuard } from './guards/can-acitivate-manager.guard';
 import { CanActivateAdminGuard } from './guards/can-activate-admin.guard';
 
 const routes: Routes = [
-  {path: "", component: LoginComponent},
+  {path: "", component:  LandingComponent},
+  {path: "landing", component:  LandingComponent},
   {path: "login", component: LoginComponent},
   {path: "register", component: RegisterComponent},
   {path: "forgotpassword", component: ForgotPasswordComponent},
